@@ -1,31 +1,33 @@
 import React, { useState } from "react";
 import './App.css';
-import SignInPopup from './components/signInPopup';
-import Modal from './components/Modal';
+import PromptDialog from "./components/dialog/PromptDialog";
+import Header from "./components/header/Header";
+import RootRouter from "./components/router/Router";
+
 
 function App() {
-  const [signInPopupOpen, setSignInPopupOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [login, setLogin] = useState(false);
-  
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
-  return (
-    <>
-      <nav className="nav">
-        <button className="btn nav-button login-btn" onClick={()=>{
-          setSignInPopupOpen(true)
-          setLogin(true)
-        }}>Login</button>
-        <button className="btn nav-button register-btn" onClick={()=> {
-          setSignInPopupOpen(true)
-          setLogin(false)
-        } }>Register</button>
-      </nav>
-      {signInPopupOpen && <SignInPopup setOpenSignInPopup={setSignInPopupOpen} setOpenModal={setModalOpen} login={login} />}
-      {modalOpen && < Modal setOpenModal={setModalOpen} />}
+  const login = () => {
+    setDialogOpen(true);
+    setIsLogin(true);
+  }
 
-    </>
-  );
+  const register = () => {
+    setDialogOpen(true);
+    setIsLogin(false);
+  }
+
+  return(
+        <div>
+          <Header isLoggedIn={false} login={login} register={register}/>
+          <div className="container">
+            <RootRouter/>
+          </div>
+          {dialogOpen && <PromptDialog isLogin={isLogin} setShowDialog={setDialogOpen}/>}
+        </div>
+  )
 }
 
 export default App;
