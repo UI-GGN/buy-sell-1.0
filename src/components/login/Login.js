@@ -4,7 +4,7 @@ import {Google, Twitter, GitHub} from '@mui/icons-material';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
+
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -79,7 +79,7 @@ const Login = () => {
                 </Button>
             </ThemeProvider>
             }
-            </Stack>
+            </Stack> 
 
             <Typography id="signInText" align="center" >
                 {newUser ? <p>Sign up with:</p> : <p>Sign in with:</p>}
