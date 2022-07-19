@@ -1,0 +1,101 @@
+.text-field {
+    display: block;
+    width: 100%;
+    margin-block: 15px;
+}
+
+.text-field > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: inherit;
+    border: solid 1px #AAA;
+    border-radius: 3px;
+}
+
+.text-field input {
+    width: 100%;
+    -webkit-appearance: none;
+    text-align: inherit;
+    padding: 10px;
+    border: none;
+    font-size: 1em;
+    background-color: white;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 3px;
+    transition: background-color ease 250ms;
+}
+
+div.line {
+    width: 100%;
+    margin-block-start: -1px;
+    position: relative;
+    height: 1px;
+    background: transparent;
+    border-color: transparent;
+}
+
+div.line > div {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    transform: scale(0, 1);
+    height: 2px;
+    margin-block-start: -1px;
+    background-color: #2875c7;
+    transition: all ease 250ms;
+}
+
+div.text-field.focus input {
+    background-color: #DEE9FA !important;
+}
+
+div.text-field.focus div.line > div {
+    transform: scale(1, 1) !important;
+}
+
+div.text-field.error div.line > div {
+    background: red !important;
+}
+
+div.text-field.error input {
+    background: rgba(255, 0, 0, 0.125) !important;
+}
+
+.toggle-password-button {
+    width: fit-content;
+    height: fit-content;
+    align-self: flex-end;
+    padding: 8px 10px 7px 10px;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    color: grey;
+    position: absolute;
+}
+
+.toggle-password-button:hover {
+    box-shadow: none;
+    border: none;
+}
+
+.toggle-icon {
+    font-size: 1.2rem !important;
+}
+
+.field-label {
+    padding-block-end: 5px;
+    font-size: medium;
+    color: #0661c4;
+    background-color: transparent;
+    position: relative;
+    z-index: 10;
+}
+
+.error-message {
+    font-size: small;
+    color: red;
+    margin-block-start: 5px;
+}
