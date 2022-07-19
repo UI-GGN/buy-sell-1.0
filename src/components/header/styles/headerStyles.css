@@ -1,0 +1,34 @@
+.header {
+    background-color: #556cd6;
+    height: 75px;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+h1 {
+    color: white;
+    margin-inline-start: 20px !important;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.button-section {
+    margin-inline-start: auto;
+    margin-inline-end: 10px;
+}
+
+.header-button {
+    background-color: white !important;
+    color: black !important;
+    width: 90px ;
+    height: 35px !important;
+    margin-inline: 10px;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: none;
+    text-align: center;
+}
+
