@@ -1,72 +1,86 @@
 import React, {useEffect, useState} from "react";
 import "../login/styles/loginFormStyles.css";
 import TextField from "../custom/TextField";
+import Button from "../custom/Button";
 import { registerDefaults, validateField } from "../login/services/formService";
+import { useLocation } from "react-router-dom";
 
 
 const RegisterForm = () => {
-    const [isSeller, setIsSeller] = useState(false);
+    const location = useLocation();
+    const [authMode, setAuthMode] = useState(location.state.authMode);
     const [fieldValues, setFieldValues] = useState(registerDefaults);
-    const [isValid, setIsValid] = useState({
-        err: false,
-        errMsg: ""
-    });
 
-    useEffect(() => {})
+    // useEffect(() => {
+    //     setAuthMode(location.state.authMode);
+    // })
+    
+    const [isValid, setIsValid] = useState({
+        name: {err: false, errMsg: ""},
+        username: {err: false, errMsg: ""},
+        phone: {err: false, errMsg: ""},
+        email: {err: false, errMsg: ""},
+        password: {err: false, errMsg: ""},
+        confirmPassword: {err: false, errMsg: ""}
+    });
 
     const handleFieldChange = (event) => {
         const {name, value} = event.target;
-        console.log(name, value)
         setFieldValues({
             ...fieldValues,
             [name] : value
         });
+        let response = (name === "confirmPassword" ? validateField(name, value, fieldValues.password) : validateField(name, value));
+        response === true ? setIsValid({...isValid, [name]:{err:false, errMsg:""}}) : setIsValid({...isValid, [name]:{err:true, errMsg:[response]}});
     }
 
     return(
         <div className="form-container" >
             <div className="button-container">
-                <button className={"default-button" + (isSeller ? " unselected" : "")}
+                <Button class={authMode==="seller" ? "unselected" : ""}
                 onClick={() => {
-                    setIsSeller(false);
+                    setAuthMode("buyer");
                     setFieldValues(registerDefaults);
                 }}
                 >
                     Register as a Buyer
-                </button>
-                <button className={"default-button" + (!isSeller ? " unselected" : "")}
+                </Button>
+                <Button class={authMode==="buyer" ? " unselected" : ""}
                 onClick={() => {
-                    setIsSeller(true);
+                    setAuthMode("seller");
                     setFieldValues(registerDefaults);
                 }}
                 >
                     Register as a Seller
-                </button>
+                </Button>
             </div>
             <form className="login-form">
                 <TextField
                 label="Name"
                 name="name"
                 value={fieldValues.name}
+                isValid={isValid.name}
                 handleChange={handleFieldChange}
                 />
                 <TextField
                 label="Username"
                 name="username"
                 value={fieldValues.username}
+                isValid={isValid.username}
                 handleChange={handleFieldChange}
                 />
                 <TextField
                 label="Email"
                 name="email"
                 value={fieldValues.email}
+                isValid={isValid.email}
                 handleChange={handleFieldChange}
                 />
                 <TextField
                 label="Phone"
                 name="phone"
-                isValid={isValid}
                 value={fieldValues.phone}
+                isValid={isValid.phone}
                 handleChange={handleFieldChange}
                 />
                 <TextField
@@ -74,6 +88,7 @@ const RegisterForm = () => {
                 name="password"
                 type="password"
                 value={fieldValues.password}
+                isValid={isValid.password}
                 handleChange={handleFieldChange}
                 />
                 <TextField
@@ -81,18 +96,18 @@ const RegisterForm = () => {
                 name="confirmPassword"
                 type="password"
                 value={fieldValues.confirmPassword}
+                isValid={isValid.confirmPassword}
                 handleChange={handleFieldChange}
                 />
                 <div className="check-box agree-terms">
                     <input type="checkbox" id = "agree-terms"/>
                     <label htmlFor="agree-terms">I have read and agree to the terms</label>
                 </div>
-                <button
+                <Button
                 type="submit"
-                className="default-button"
                 >
                     Sign In
-                </button>
+                </Button>
             </form>
         </div>
     );
