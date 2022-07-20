@@ -16,3 +16,18 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 6px 0px;
     cursor: pointer;
 }
+
+.text-button {
+    background-color: transparent;
+    border: none;
+    color: #125FD2;
+    font-weight: normal;
+    box-shadow: none;
+    text-transform: none;
+    padding: 0;
+    height: fit-content;
+}
+
+.text-button:hover {
+    box-shadow: none;
+}

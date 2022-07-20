@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Visibility, VisibilityOff} from '@mui/icons-material';
 import "./styles/textFieldStyles.css";
 
@@ -9,10 +9,13 @@ const TextField = ({label, type, name, value, handleChange, isValid}) => {
     const [showError, setShowError] = useState(false);
     const [validateError, setValidateError] = useState(false);
 
+    useEffect(() => {
+        if(validateError) setShowError(isValid.err);
+        value !== "" ? setShowLabel(true) : setShowLabel(false);
+    }) 
+    
     const handleFieldChange = (event) => {
         handleChange(event);
-        //if(validateError) setShowError(isValid.err);
-        (event.target.value) !== "" ? setShowLabel(true) : setShowLabel(false);
     }
 
     const togglePasswordVisibility = (event) => {
@@ -44,8 +47,8 @@ const TextField = ({label, type, name, value, handleChange, isValid}) => {
                 onFocus={() => {setFocused(true)}}
                 onBlur={() => {
                     setFocused(false);
-                    //setValidateError(true);
-                    //setShowError(isValid.err);
+                    setValidateError(true);
+                    setShowError(isValid.err);
                 }}
                 />
                 {
