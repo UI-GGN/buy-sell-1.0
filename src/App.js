@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import './App.css';
 import PromptDialog from "./components/dialog/PromptDialog";
 import Header from "./components/header/Header";
@@ -20,13 +21,13 @@ function App() {
   }
 
   return(
-        <div>
+        <BrowserRouter >
           <Header isLoggedIn={false} login={login} register={register}/>
           <div className="container">
             <RootRouter/>
           </div>
           {dialogOpen && <PromptDialog isLogin={isLogin} setShowDialog={setDialogOpen}/>}
-        </div>
+        </BrowserRouter>
   )
 }
 
