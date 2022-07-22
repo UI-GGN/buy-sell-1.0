@@ -9,14 +9,12 @@ const TextField = ({label, type, name, value, handleChange, isValid}) => {
     const [showError, setShowError] = useState(false);
     const [validateError, setValidateError] = useState(false);
 
+    if(!isValid) isValid = {err: false, errMsg: ""}
+
     useEffect(() => {
         if(validateError) setShowError(isValid.err);
         value !== "" ? setShowLabel(true) : setShowLabel(false);
     }) 
-    
-    const handleFieldChange = (event) => {
-        handleChange(event);
-    }
 
     const togglePasswordVisibility = (event) => {
         event.preventDefault();
@@ -25,15 +23,16 @@ const TextField = ({label, type, name, value, handleChange, isValid}) => {
 
     return(
         <div className={"text-field" + (focused ? " focus" : "") + (showError ? " error" : "")}>
+            
             {
-            showLabel && 
-            <label
+            showLabel &&
+            <p
             className="field-label"
-            htmlFor={name}
             >
                 {label}
-            </label>
+            </p>          
             }
+            <div className="label-container"></div>
             <div>
                 <input
                 id={name}
@@ -43,7 +42,7 @@ const TextField = ({label, type, name, value, handleChange, isValid}) => {
                 placeholder={label}
                 value={value}
                 required
-                onChange={e => {handleFieldChange(e)}}
+                onChange= {(e) => {handleChange(e)}}
                 onFocus={() => {setFocused(true)}}
                 onBlur={() => {
                     setFocused(false);
@@ -64,7 +63,9 @@ const TextField = ({label, type, name, value, handleChange, isValid}) => {
                     <div></div>
                 </div>
             </div>
-            {showError && <p className="error-message">{isValid.errMsg}</p>}
+            <div className="error-container">
+                {showError && <p className="error-message">{isValid.errMsg}</p>}
+            </div>           
         </div>
     )
 }

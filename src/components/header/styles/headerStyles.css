@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-}
+  }
 
 h1 {
     color: white;
@@ -25,10 +25,38 @@ h1 {
     width: 90px ;
     height: 35px !important;
     margin-inline: 10px;
-    padding: 5px 15px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: none;
+    padding: 5px 15px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    text-transform: none !important;
     text-align: center;
 }
 
+.profile {
+    margin-inline: auto 10px;
+    color: white !important;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    row-gap: 15px;
+}
+
+.profile p {
+    margin: 0 5px 0 0;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.profile button {
+    transform: scale(0.8);
+    background-color: transparent;
+    size: 15px;
+    position: relative;
+    top: 2px;
+    color: white;
+    border: none;
+}
+
+.profile button:hover {
+    cursor: pointer;
+}

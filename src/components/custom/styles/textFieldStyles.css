@@ -1,7 +1,7 @@
 .text-field {
     display: block;
     width: 100%;
-    margin-block: 15px;
+    margin-block: 5px 0;
 }
 
 .text-field > div {
@@ -11,9 +11,6 @@
     text-align: inherit;
     border: solid 1px #AAA;
     border-radius: 3px;
-    transition:
-     top 0.3s ease,
-    color 0.3s ease;
 }
 
 .text-field input {
@@ -28,17 +25,6 @@
     box-sizing: border-box;
     border-radius: 3px;
     transition: background-color ease 250ms;
-}
-.field-label{
-    position:absolute;
-    font-size: 8px;
-    color: #3c69ef;
-    top:7px;
-    left: 10px;
-    background-color:white !important;
-    z-index:1000 ;
-    padding: 0 !important;
-    margin-block: 1px;
 }
 
 div.line {
@@ -99,17 +85,34 @@ div.text-field.error input {
     font-size: 1.2rem !important;
 }
 
-.field-label {
-    padding-block-end: 5px;
-    font-size: medium;
-    color: #0661c4;
-    background-color: transparent;
+.label-container {
     position: relative;
-    z-index: 10;
+    height: 17px;
+    background-color: transparent;
+    border: none !important;
+    z-index: -10;
+}
+
+.field-label {
+    position: absolute;
+    font-size: 14px;
+    color: #3c69ef;
+    /* top:15px; */
+    /* left: 10px; */
+    background-color:transparent !important;
+    z-index:1000 ;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.error-container {
+    border: none !important;
+    height: 20px;
 }
 
 .error-message {
     font-size: small;
     color: red;
-    margin-block-start: 5px;
+    margin-block: 2px 0;
+    margin-inline-start: 3px;
 }

@@ -3,23 +3,42 @@ import { Link, useLocation } from "react-router-dom";
 import './styles/loginFormStyles.css';
 import TextField from "../custom/TextField";
 import Button from "../custom/Button";
-import { loginDefaults } from "./services/formService";
+import { loginDefaults, validateField } from "./services/loginService";
+import useLogin from "./hooks/useLogin";
 
-const LoginForm = () => {
+const LoginForm = ({isAuthenticated, onLogin}) => {
+    // let params = (new URL(document.location)).searchParams;
+    // const mode = params.get("authMode");
     const location = useLocation();
-    const [authMode, setAuthMode] = useState(location.state.authMode);
+    let mode = location.state;
+    const [authMode, setAuthMode] = useState(mode ? mode.authMode : "buyer");
     const [fieldValues, setFieldValues] = useState(loginDefaults);
+    const [enableSubmit, setEnableSubmit] = useState(false);
 
+    const [isValid, setIsValid] = useState({
+        username: {err: false, errMsg: ""},
+        password: {err: false, errMsg: ""}
+    });
 
-    const handleSubmit = (event) => {
-        console.log(event)
-    }
+   const {handleLogin, notification} = useLogin(onLogin); 
+
+   const handleSubmit = (event) => {
+    //event.stopImmediatePropagation();
+    handleLogin(fieldValues, authMode);
+   }
 
     const handleFieldChange = (event) => {
-        setFieldValues({
-            ...fieldValues,
-            [event.target.name] : event.target.value
-        });
+        const {name, value} = event.target;
+        const updatedFieldValues = {...fieldValues, [name] : value};
+        setFieldValues(updatedFieldValues);
+
+        let response =  validateField(name, value);
+        let valid;
+        response === true ? valid = {...isValid, [name]:{err:false, errMsg:""}} :  valid = {...isValid, [name]:{err:true, errMsg:[response]}};
+        setIsValid(valid);
+
+        (Object.values(updatedFieldValues).every(field => field !== "") && 
+        Object.values(valid).every(field => field.err === false)) ? setEnableSubmit(true) : setEnableSubmit(false);
     }
 
     return(
@@ -43,15 +62,20 @@ const LoginForm = () => {
                 </Button>
             </div>
 
-             <div>
+            <div>
                 <form 
                 className="login-form"
-                onSubmit={handleSubmit()}
+                action=""
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLogin(fieldValues, authMode);
+                }}
                 >
                     <TextField
                     label="Username"
                     name="username"
                     value={fieldValues.username}
+                    isValid={isValid.username}
                     handleChange={handleFieldChange}
                     />
                     <TextField
@@ -59,6 +83,7 @@ const LoginForm = () => {
                     name="password"
                     type="password"
                     value={fieldValues.password}
+                    isValid={isValid.password}
                     handleChange={handleFieldChange}
                     />
                     <div className="last-layer">
@@ -68,7 +93,7 @@ const LoginForm = () => {
                         </div>
                     
                         <Button
-                        class="text-button default-button"
+                        class="text-button"
                         >
                             Forgot password?
                         </Button>
@@ -76,21 +101,23 @@ const LoginForm = () => {
                     <Button
                     type="submit"
                     class="default-button"
+                    disabled={!enableSubmit}
                     >
-                        Sign In
+                        Log In
                     </Button>
                 </form>
-                <div className="footer">
+                {/* <div className="footer">
                     <p>
                         Not a member? 
                     </p>
                     <Link 
-                    to={{pathname: "/register", state: {authMode: authMode}}}
+                    to={"/register?authMode="+authMode}
                     >
                         Register
                     </Link>
-                </div>
-            </div> 
+                </div> */}
+            </div>
+            {/* {notification()} */}
         </div>
     )
 }

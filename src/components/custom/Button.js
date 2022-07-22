@@ -1,17 +1,20 @@
 import React from "react";
 import "./styles/buttonStyles.css";
 
-const Button = ({onClick, type, ...props}) => {
+const Button = ({onClick, type, disabled, ...props}) => {
     return(
         <button
-        className={"button"+" "+props.class}
+        className={"button"+" "+(props.class && props.class)}
         type={type || "button"}
+        disabled={disabled}
         onClick={ onClick ? (
             (e) => {
                 onClick();
+                //e.preventDefault();
                 type !== "submit" && e.preventDefault();
             })
             :
+            //(e) => {e.preventDefault()}
             (e) => {type !== "submit" && e.preventDefault()}
         }
         >

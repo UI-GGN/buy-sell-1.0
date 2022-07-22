@@ -6,14 +6,16 @@ import Button from "../custom/Button";
 
 const PromptDialog = ({isLogin, setShowDialog}) => {
     const navigate = useNavigate();
-    
+
     const routeLogin = (mode) => {
         setShowDialog(false);
+        //navigate("/login?authMode="+mode)
         navigate("/login", {state: {authMode: mode}})
     }
 
     const routeRegister = (mode) => {
         setShowDialog(false)
+        //navigate("/register?authMode="+mode)
         navigate("/register", {state: {authMode: mode}})
     }
 
@@ -22,7 +24,7 @@ const PromptDialog = ({isLogin, setShowDialog}) => {
             {isLogin ? <p>Login as a seller or buyer?</p> : <p>Register as a seller or buyer?</p>}
             <div id="button-container">
                 <Button
-                onClick={() =>  {isLogin ? routeLogin("buyer") : routeRegister("buyer")}}
+                onClick={() =>  {isLogin ? routeLogin("buyer") : routeRegister("buyer");}}
                 >
                     Buyer
                 </Button>
