@@ -11,6 +11,9 @@
     text-align: inherit;
     border: solid 1px #AAA;
     border-radius: 3px;
+    transition:
+     top 0.3s ease,
+    color 0.3s ease;
 }
 
 .text-field input {
@@ -25,6 +28,17 @@
     box-sizing: border-box;
     border-radius: 3px;
     transition: background-color ease 250ms;
+}
+.field-label{
+    position:absolute;
+    font-size: 8px;
+    color: #3c69ef;
+    top:7px;
+    left: 10px;
+    background-color:white !important;
+    z-index:1000 ;
+    padding: 0 !important;
+    margin-block: 1px;
 }
 
 div.line {
