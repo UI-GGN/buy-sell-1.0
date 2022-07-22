@@ -17,8 +17,8 @@ export const register = (details, authMode) => {
     let database = JSON.parse(localStorage.getItem("database"));
     const userArray = database ? database[authMode] : Database[authMode];
     if(userArray.some(user => user.username === details.username)) return "Username already exists, try a different one"
-    if(userArray.some(user => user.email === details.email)) return "Username already exists, try a different one"
-    if(userArray.some(user => user.phone === details.phone)) return "Username already exists, try a different one"
+    if(userArray.some(user => user.email === details.email)) return "An account with email already exists"
+    if(userArray.some(user => user.phone === details.phone)) return "An account with phone number already exists"
 
     Database[authMode].push(details);
     if(database){
