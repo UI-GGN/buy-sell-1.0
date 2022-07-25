@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import "../login/loginFormStyles.css";
+import "../login/loginForm.css";
 import TextField from "../custom/TextField/TextField";
 import Button from "../custom/button/Button";
 import { registerDefaults, validateField } from "../../services/registerService";

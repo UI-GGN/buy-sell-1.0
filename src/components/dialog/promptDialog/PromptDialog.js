@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import '../dialogStyles.css';
+import '../dialog.css';
 import Dialog from "../Dialog";
 import Button from "../../custom/button/Button";
 

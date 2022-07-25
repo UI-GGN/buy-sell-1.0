@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import productList from "./ProductList";
-import './productStyles.css';
+import './product.css';
 import InfoDialog from "../dialog/infoDialog/InfoDialog";
 
 const Products = ({isAuthenticated}) => {
