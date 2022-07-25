@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './styles/dialogStyles.css';
+import './dialogStyles.css';
 
 const Dialog = ({setShowDialog, ...props}) => {
 

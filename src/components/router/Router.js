@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, Routes } from "react-router-d
 import '../../App.css';
 import useAuth from "../../customHooks/useAuth";
 import Header from "../header/Header";
-import PromptDialog from "../dialog/PromptDialog";
+import PromptDialog from "../dialog/promptDialog/PromptDialog";
 import LoginForm from "../login/LoginForm";
 import Products from "../products/Products";
 import RegisterForm from "../register/RegisterForm";

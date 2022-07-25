@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { Link, useLocation } from "react-router-dom";
-import './styles/loginFormStyles.css';
-import TextField from "../custom/TextField";
-import Button from "../custom/Button";
+import './loginFormStyles.css';
+import TextField from "../custom/TextField/TextField";
+import Button from "../custom/button/Button";
 import { loginDefaults, validateField } from "../../services/loginService";
 import useLogin from "../../customHooks/useLogin";
 

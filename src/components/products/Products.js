@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import productList from "./ProductList";
-import './styles/productStyles.css';
-import InfoDialog from "../dialog/InfoDialog";
+import './productStyles.css';
+import InfoDialog from "../dialog/infoDialog/InfoDialog";
 
 const Products = ({isAuthenticated}) => {
     const [showDialog, setShowDialog] = useState(false);

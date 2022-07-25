@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./styles/headerStyles.css"
-import Button from "../custom/Button"
+import "./headerStyles.css"
+import Button from "../custom/button/Button"
 import { Link } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 

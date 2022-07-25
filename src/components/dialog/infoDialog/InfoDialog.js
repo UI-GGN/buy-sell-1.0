@@ -1,6 +1,6 @@
 import React from "react";
-import './styles/dialogStyles.css';
-import Dialog from "./Dialog";
+import '../dialogStyles.css';
+import Dialog from "../Dialog";
 
 const InfoDialog = ({isLoggedIn, setShowDialog}) => {
     return(

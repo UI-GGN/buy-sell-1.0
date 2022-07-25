@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Visibility, VisibilityOff} from '@mui/icons-material';
-import "./styles/textFieldStyles.css";
+import "./textFieldStyles.css";
 
 const TextField = ({label, type, name, value, handleChange, isValid}) => {
     const [focused, setFocused] = useState(false);

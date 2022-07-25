@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import './styles/dialogStyles.css';
-import Dialog from "./Dialog";
-import Button from "../custom/Button";
+import '../dialogStyles.css';
+import Dialog from "../Dialog";
+import Button from "../../custom/button/Button";
 
 const PromptDialog = ({isLogin, setShowDialog}) => {
     const navigate = useNavigate();
