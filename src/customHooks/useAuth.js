@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {isLoggedIn, login, register, logout} from "../components/auth/services/authService";
+import {isLoggedIn, login, register, logout} from "../services/authService";
 import { Database } from "../mocks/Database";
 
 export default () => {

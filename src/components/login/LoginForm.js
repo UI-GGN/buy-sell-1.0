@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import './styles/loginFormStyles.css';
 import TextField from "../custom/TextField";
 import Button from "../custom/Button";
-import { loginDefaults, validateField } from "./services/loginService";
+import { loginDefaults, validateField } from "../../services/loginService";
 import useLogin from "../../customHooks/useLogin";
 
 const LoginForm = ({isAuthenticated, onLogin}) => {

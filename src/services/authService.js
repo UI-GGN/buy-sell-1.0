@@ -1,4 +1,4 @@
-import { Database } from "../../../mocks/Database";
+import { Database } from "../mocks/Database";
 
 export const login = (username, password, authMode) => {
     const database = JSON.parse(localStorage.getItem("database"));
