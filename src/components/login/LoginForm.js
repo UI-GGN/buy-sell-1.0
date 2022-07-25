@@ -4,7 +4,7 @@ import './styles/loginFormStyles.css';
 import TextField from "../custom/TextField";
 import Button from "../custom/Button";
 import { loginDefaults, validateField } from "./services/loginService";
-import useLogin from "./hooks/useLogin";
+import useLogin from "../../customHooks/useLogin";
 
 const LoginForm = ({isAuthenticated, onLogin}) => {
     // let params = (new URL(document.location)).searchParams;

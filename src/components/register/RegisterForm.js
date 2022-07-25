@@ -3,7 +3,7 @@ import "../login/styles/loginFormStyles.css";
 import TextField from "../custom/TextField";
 import Button from "../custom/Button";
 import { registerDefaults, validateField } from "./services/registerService";
-import useRegister from "./hooks/useRegister";
+import useRegister from "../../customHooks/useRegister";
 import { useLocation } from "react-router-dom";
 
 

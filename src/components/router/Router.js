@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Redirect, Route, Routes } from "react-router-dom";
 import '../../App.css';
-import useAuth from "../auth/hooks/useAuth";
+import useAuth from "../../customHooks/useAuth";
 import Header from "../header/Header";
 import PromptDialog from "../dialog/PromptDialog";
 import LoginForm from "../login/LoginForm";
