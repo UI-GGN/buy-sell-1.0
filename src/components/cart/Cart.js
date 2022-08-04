@@ -19,7 +19,7 @@ const Cart = () => {
     })
 
     const removeFromCart = (productId) => {
-        let updatedCart = {...cart}
+        let updatedCart = {...cart};
         const index = updatedCart[username]["items"].indexOf(productId);
         updatedCart[username]["items"].splice(index, 1);
         delete updatedCart[username]["count"][productId];
@@ -31,16 +31,11 @@ const Cart = () => {
     }
 
     const updateItemQuantity = (productId, operation) => {
-        let updatedCart 
-        updatedCart = {...cart}
-        console.log(updatedCart)
-        console.log(updatedCart[username])
+        let updatedCart = {...cart};
         (updatedCart[username]["count"][productId] === 1 && operation === "decrement") && removeFromCart(productId);
-        operation === "increment" ? (
-            updatedCart[username]["count"][productId] += 1
-        ) : (
-            updatedCart[username]["count"][productId] -= 1
-        )
+        (operation === "increment")
+        ? (updatedCart[username]["count"][productId] += 1) 
+        : (updatedCart[username]["count"][productId] -= 1)
 
         setCart(updatedCart);
         calculateTotalCost();
