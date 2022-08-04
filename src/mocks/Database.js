@@ -18,3 +18,13 @@ export const Database = {
         }
     ]
 }
+
+export const Wishlist = {
+    "buyer-1" : [],
+    "seller-1" : []
+}
+
+export const Cart = {
+    "buyer-1" : {"items" : [], "count" : {}},
+    "seller-1" : {"items" : [], "count" : {}}
+}
