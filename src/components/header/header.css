@@ -1,31 +1,43 @@
 .header {
-    background-color: #556cd6;
-    height: 75px;
-    position: sticky;
+    background-color: white;
+    height: 80px;
+    width: 100%;
+    top: 0;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-
-h1 {
-    color: white;
-    margin-inline-start: 20px !important;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: bold;
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.2);
 }
 
-.button-section {
+.logo {
+    height: 130px;
+    width: 130px;
+}
+
+.sellers-logo {
+    height: 170px;
+    width: 170px;
+}
+
+.icons-section {
     margin-inline-start: auto;
-    margin-inline-end: 10px;
+    margin-inline-end: 50px;
+    position: relative;
+    display: flex;
+}
+
+.inner-icons-section{
+    display: flex;
 }
 
 .header-button {
-    background-color: white !important;
-    color: black !important;
-    width: 90px ;
+    /* background-color: white !important; */
+    /* color: black !important; */
+    width: 95px ;
     height: 35px !important;
     margin-inline: 10px;
-    padding: 5px 15px !important;
+    padding: 5px 12px !important;
     font-size: 14px !important;
     font-weight: bold !important;
     text-transform: none !important;
@@ -34,9 +46,9 @@ h1 {
 
 .profile {
     margin-inline: auto 10px;
-    color: white !important;
     height: 25px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     row-gap: 15px;
 }
@@ -44,10 +56,10 @@ h1 {
 .profile p {
     margin: 0 5px 0 0;
     font-size: 15px;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
-.profile button {
+/* .profile button {
     transform: scale(0.8);
     background-color: transparent;
     size: 15px;
@@ -55,8 +67,83 @@ h1 {
     top: 2px;
     color: white;
     border: none;
-}
+} */
 
 .profile button:hover {
     cursor: pointer;
+}
+
+.icon-button{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    transform: scale(1.1);
+    font-weight: small;
+}
+
+.icon-button:hover {
+    cursor: pointer;
+}
+
+.icon-title {
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 13px;
+}
+
+.profile-icon, .cart-icon, .wishlist-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    /* padding-inline: 10px 30px; */
+}
+
+.indicator{
+    height: 0;
+    width: 40px;
+    border: 2px solid black;
+    position: relative;
+    top: 16px;
+}
+
+.dropdown-welcome {
+    margin: 0 0 15px 0;
+}
+
+.button-section {
+    display: flex;
+}
+
+.dropdown hr {
+    margin-block: 15px;
+    opacity: 40%;
+}
+
+.dropdown p {
+    margin: 5px 0 7px 0;
+}
+
+.dropdown p:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.welcome-user {
+    display: flex;
+    align-items: center;
+}
+
+.welcome-user p {
+    margin: 0;
+}
+
+.welcome-user p:hover {
+    cursor: text;
+    font-weight: normal;
+}
+
+.dropdown #username {
+    font-weight: bold;
+    margin: 0 0 0 5px;
 }
