@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { Alert } from "@mui/material";
+import Fade from "@mui/material/Fade";
 
 export default (onRegister) => {
     const [showError, setShowError] = useState(false);
@@ -7,15 +8,19 @@ export default (onRegister) => {
     const [errorMsg, setErrorMsg] = useState('');
     const [success, setSuccess] = useState('');
 
-    const notification = () => {
+    const Notification = () => {
         if (showError) {
             return (
-                <Alert severity="error" onClose={() => {}}>{errorMsg}</Alert>
+                <Fade in={showError}>
+                    <Alert severity="error" onClose={() => {setShowError(false)}}>{errorMsg}</Alert>
+                </Fade>
             )
         }
         if (showSuccess) {
             return (
-                <Alert severity="success" onClose={() => {}}>{success}</Alert>
+                <Fade in={showSuccess}>
+                    <Alert severity="success" onClose={() => {setShowSuccess(false)}}>{success}</Alert>
+                </Fade>
             )
         }
     };
@@ -31,28 +36,27 @@ export default (onRegister) => {
                     }
         details.username = details.username.trim();
         details.email = details.email.trim().toLowerCase();
-        authMode === "buyer" ? authMode = "Buyers" : authMode = "Sellers";
 
         console.log(details);
 
         const response = onRegister(details, authMode);
         if (response === true){
             setShowError(false);
-            window.location.pathname="/login";
+            authMode === "buyer" ? window.location.pathname="/login" : window.location.pathname="/seller";
             setSuccess("Registration Successful, Login to continue")
             setShowSuccess(true);
-            alert("Registration Successful, Login to continue");
+            //alert("Registration Successful, Login to continue");
             
         }
         else {
             setErrorMsg("Registration failed: " + response);
             setShowError(true);
-            alert("Registration failed: " + response);
+            //alert("Registration failed: " + response);
         } 
     };
 
     return {
-        notification: notification,
+        notification: Notification,
         handleRegister: handleRegister
     };
 };

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { Alert } from "@mui/material";
-import { SettingsInputComponent } from "@mui/icons-material";
+import Fade from "@mui/material/Fade";
 
 export default (onLogin) => {
     const [showError, setShowError] = useState(false);
@@ -11,33 +11,34 @@ export default (onLogin) => {
     const notification = () => {
         if (showError) {
             return (
-                <Alert severity="error" >{errorMsg}</Alert>
+                <Fade in={showError}>
+                    <Alert severity="error" onClose={() => {setShowError(false)}}>{errorMsg}</Alert>
+                </Fade>
             )
         }
         if (showSuccess) {
             return (
-                <Alert severity="success" onClose={() => {}}>{success}</Alert>
+                <Fade in={showSuccess}>
+                    <Alert severity="success" onClose={() => {setShowSuccess(false)}}>{success}</Alert>
+                </Fade>
             )
         }
     };
 
     const handleLogin = (values, authMode) => {
         let {username, password} = values;
-        authMode === "buyer" ? authMode = "Buyers" : authMode = "Sellers";
         username = username.trim();
         const response = onLogin(username, password, authMode);
         if(response === true){
             setShowError(false);
             window.location.pathname="/";
-            //window.location.assign(window.location.origin+"/");
-            alert("Login Successful")
+            //alert("Login Successful")
             setSuccess("Login Successful")
             setShowSuccess(true);
         }
         else {
-            //window.location.assign(window.location.origin+"/login?authMode=" + authMode);
             setErrorMsg("Enter valid credentials");
-            alert("Enter valid credentials");
+            //alert("Enter valid credentials");
             setShowError(true);
         }
             
