@@ -1,27 +1,21 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Redirect, Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import '../../App.css';
 import useAuth from "../../customHooks/useAuth";
 import Header from "../header/Header";
-import PromptDialog from "../dialog/promptDialog/PromptDialog";
 import LoginForm from "../login/LoginForm";
-import Products from "../products/Products";
 import RegisterForm from "../register/RegisterForm";
+import Products from "../products/Products";
+import Wishlist from "../wishlist/Wishlist";
+import Cart from "../cart/Cart";
 
 
 const RootRouter = () => {
     const {handleLogin, handleRegister, handleLogout, isAuthenticated} = useAuth();
-    const [dialogOpen, setDialogOpen] = useState(false);
-    const [isLogin, setIsLogin] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
 
-    const login = () => {
-        setDialogOpen(true);
-        setIsLogin(true);
-    }
-
-    const register = () => {
-        setDialogOpen(true);
-        setIsLogin(false);
+    function ProtectedRoute({ children, redirectTo }) {
+        return isAuthenticated ? children : <Navigate to={redirectTo} />;
     }
 
     return(
@@ -29,26 +23,76 @@ const RootRouter = () => {
             <Route exact path="/"
                 element={
                     <div>
-                        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} login={login} register={register}/>
-                        <div className="container"><Products isAuthenticated={isAuthenticated}/></div>
-                        {dialogOpen && <PromptDialog isLogin={isLogin} setShowDialog={setDialogOpen}/>}
+                        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} setSearchQuery={setSearchQuery}/>
+                        <div className="container">
+                            <Products isAuthenticated={isAuthenticated} 
+                            searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+                        </div>
                     </div>
             } 
             />
             <Route exact path="/login"
                 element={
                     <div>
-                        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} login={login} register={register}/>
-                        <div className="container"><LoginForm onLogin={handleLogin} isAuthenticated={isAuthenticated}/></div>
+                        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout}/>
+                        <div className="container">
+                            <LoginForm onLogin={handleLogin} isAuthenticated={isAuthenticated} authMode={"buyer"}/>
+                        </div>
+                    </div>
+                } 
+            />
+            <Route exact path="/seller"
+                element={
+                    <div>
+                        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout}/>
+                        <div className="container">
+                            <LoginForm onLogin={handleLogin} isAuthenticated={isAuthenticated} authMode={"seller"}/>
+                        </div>
                     </div>
                 } 
             />
             <Route exact path="/register" 
                 element={
                     <div>
-                        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} login={login} register={register}/>
-                        <div className="container"><RegisterForm onRegister={handleRegister} isAuthenticated={isAuthenticated}/></div>
+                        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout}/>
+                        <div className="container">
+                            <RegisterForm onRegister={handleRegister} isAuthenticated={isAuthenticated} authMode={"buyer"}/>
+                        </div>
                     </div>
+                } 
+            />
+            <Route exact path="/seller/register" 
+                element={
+                    <div>
+                        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout}/>
+                        <div className="container">
+                            <RegisterForm onRegister={handleRegister} isAuthenticated={isAuthenticated} authMode={"seller"}/>
+                        </div>
+                    </div>
+                } 
+            />
+            <Route exact path="/my/wishlist" 
+                element={
+                    <ProtectedRoute redirectTo={"/"}>
+                        <div>
+                            <Header isAuthenticated={isAuthenticated} onLogout={handleLogout}/>
+                            <div className="container">
+                                <Wishlist/>
+                            </div>
+                        </div>
+                    </ProtectedRoute>
+                } 
+            />
+            <Route exact path="/my/cart"
+                element={
+                    <ProtectedRoute redirectTo={"/"}>
+                        <div>
+                            <Header isAuthenticated={isAuthenticated} onLogout={handleLogout}/>
+                            <div className="container">
+                                <Cart/>
+                            </div>
+                        </div>
+                    </ProtectedRoute>
                 } 
             />
         </Routes>
