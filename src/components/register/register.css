@@ -1,0 +1,13 @@
+.formContainer {
+  display: flex;
+  align-items: center;
+}
+form {
+}
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
