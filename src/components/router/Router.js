@@ -8,6 +8,7 @@ import RegisterForm from "../register/RegisterForm";
 import Products from "../products/Products";
 import Wishlist from "../wishlist/Wishlist";
 import Cart from "../cart/Cart";
+import ProductInfo from "../products/ProductInfo";
 
 
 const RootRouter = () => {
@@ -93,6 +94,14 @@ const RootRouter = () => {
                             </div>
                         </div>
                     </ProtectedRoute>
+                } 
+            />
+            <Route path="/products/:id" 
+                element={
+                    <div>
+                        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+                        <div className="container">< ProductInfo isAuthenticated={isAuthenticated}/></div>
+                    </div>
                 } 
             />
         </Routes>

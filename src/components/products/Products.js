@@ -5,12 +5,17 @@ import productList from "./ProductList";
 import InfoDialog from "../dialog/infoDialog/InfoDialog";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useNavigate } from "react-router-dom";
 
 const Products = ({isAuthenticated, searchQuery, setSearchQuery}) => {
     const [showDialog, setShowDialog] = useState(false);
     const username = localStorage.getItem("username") || "";
     const [wishlist, setWishlist] = useState(JSON.parse(localStorage.getItem("wishlist")) || "");
     let params = (new URL(document.location)).searchParams;
+    const navigate = useNavigate();
+    const onProductClick = (productId) => {
+        isAuthenticated ? navigate("/products/product?id=" + productId) : setShowDialog(true);
+    }
     
     useEffect(() => {
         setSearchQuery(params.get("s") || "")
@@ -51,7 +56,7 @@ const Products = ({isAuthenticated, searchQuery, setSearchQuery}) => {
                                 src={productItem.image} 
                                 alt={productItem.product + " image"}
                                 className="product-link"
-                                onClick={()=>{setShowDialog(true)}}
+                                onClick={()=>{onProductClick(productItem.id)}}
                                 >
                                 </img>
                                 <hr/>
@@ -59,7 +64,7 @@ const Products = ({isAuthenticated, searchQuery, setSearchQuery}) => {
                                     <div>
                                         <h3
                                         className="product-link"
-                                        onClick={()=>{setShowDialog(true)}}
+                                        onClick={()=>{onProductClick(productItem.id)}}
                                         >
                                             {productItem.product}
                                         </h3>

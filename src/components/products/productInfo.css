@@ -1,0 +1,41 @@
+.containers{
+    height: 600px;
+    width: 1512px;
+    display: flex;
+    align-items: center;
+    margin: 0 50px;
+    justify-content: space-evenly;
+}
+.image{
+    
+    /* width: 400px; */
+    margin: 15px;
+    text-align: left;
+    justify-content: left;
+    margin-top: 100px;
+}
+.image:hover{
+    transform: scale(1.7);
+}
+.info{
+    text-align: left;
+    width: 400px;
+    margin-top:300px;
+}
+table, tr,th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width:400px;
+    height:50px;
+    
+  }
+.icon{
+    width: 20px;
+    height: 20px;
+    justify-content: left;
+    position: absolute;
+    padding-left: 25px;
+}
+.dilevery-option{
+    text-align: center;
+}
