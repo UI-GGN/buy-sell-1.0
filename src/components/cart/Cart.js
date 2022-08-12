@@ -53,7 +53,7 @@ const Cart = () => {
 
     return(
         <section className="stack">
-            <h2>Your cart</h2>
+            <h2>Your Cart</h2>
             {products.length === 0 ? (
                 <div className="empty-container">
                 <ProductionQuantityLimitsIcon className="empty-icon"/>
