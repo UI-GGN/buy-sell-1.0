@@ -12,7 +12,7 @@ import Searchbar from "../searchbar/Searchbar";
 
 const Header = ({isAuthenticated, onLogout, setSearchQuery}) => {
     const [showDropdown, setShowDropdown] = useState(false);
-    const iconLocationArray = ["/", "/my/wishlist", "/my/cart"]
+    const iconLocationArray = ["/login", "/register", "/seller", "/seller/register"]
     const navigate = useNavigate();
 
     const routeHome = () => {
@@ -94,7 +94,7 @@ const Header = ({isAuthenticated, onLogout, setSearchQuery}) => {
             {window.location.pathname === "/" &&
             <Searchbar setSearchQuery={setSearchQuery}/>}
             
-            {iconLocationArray.includes(window.location.pathname) &&
+            {!iconLocationArray.includes(window.location.pathname) &&
             <div className="icons-section">
                 <div className="profile-icon">
                     <button 
