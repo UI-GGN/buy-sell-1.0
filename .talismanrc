@@ -1,8 +1,26 @@
 fileignoreconfig:
+- filename: src/components/custom/TextField.js
+  checksum: 646de69e3f0293935f55e582df05cdd1c3c6c967b4c6db7669cb9ffceba925fb
 - filename: yarn.lock
-  checksum: fbea8c85f66b46057a61d6ce9ee0ba76079e983d667603e6431bbab6850ea4d3
+  checksum: 87eb6965de5bf0a0482fd26641b223f440595a9f915ca368347ad2f6248980d4
+- filename: src/components/register/RegisterForm.js
+  checksum: fbe61ff5fa777cb9c1525f4413390b4731a0e0400ce81e119bb377b57b87f437
+- filename: src/components/login/LoginForm.js
+  checksum: 0ca6ae3d3c7b725cf04140c9afe990bb05ccea9f96a0c9827a2b7bbafa2740c4
+- filename: src/components/auth/services/authService.js
+  checksum: b968086a642135865346bd80f2b4a2a8e97efc354df002d0ae585b068da40807
+- filename: src/components/database/Database.js
+  checksum: 25066e2ab29dc2ddb8e800ae2672ce2136823c1db65fbabf1f3081da5245a27d
+- filename: src/components/register/hooks/useRegister.js
+  checksum: 60622fe267930106c1b65fad634bc5c935d7607d5c631bef17993daf3439a8a4
+- filename: src/components/cart/Cart.js
+  checksum: adf83648befee005fa8ac80dc7e8e00a3d558f1bbff6937da2910c09ffc1daad
+- filename: src/components/wishlist/Wishlist.js
+  checksum: 34cec2caf97f21244aea5274983b6786ebabc4c2f341e351ea658d28edb1e798
+- filename: src/components/products/Products.js
+  checksum: aa10b32b9a843a2f57ead00dad481ba9b373c6a15942597a75d021b30fdffc5a
 version: "1.0"
 fileignoreconfig:
 - filename: src/components/products/ProductInfo.js
-  checksum: b57f4f6e5581622129c7bbfc4a9a9c4e23bafc94a69a3fa50b77716ee6a6844e
+  checksum: 281cec3ecb7083f2525cb61f24b2c5340f989e771aededaffa0a8804608eebfe
 version: ""
