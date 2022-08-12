@@ -26,6 +26,7 @@ const Products = ({isAuthenticated, searchQuery, setSearchQuery}) => {
     if(searchQuery !== ""){
         let items = new JsSearch.Search("product");
         items.addIndex("product");
+        items.addIndex("tags");
         items.addDocuments(productList);
         products = items.search(searchQuery);
     }
@@ -33,7 +34,7 @@ const Products = ({isAuthenticated, searchQuery, setSearchQuery}) => {
     const updateWishlist = (product) => {
         let updatedWishlist = {...wishlist}; 
         let addProduct = true;
-        updatedWishlist[username].map((item, index) => {
+        updatedWishlist[username].forEach((item, index) => {
             if (item === product) {
                 updatedWishlist[username].splice(index, 1);
                 addProduct = false;
@@ -55,7 +56,7 @@ const Products = ({isAuthenticated, searchQuery, setSearchQuery}) => {
                                 <img
                                 src={productItem.image} 
                                 alt={productItem.product + " image"}
-                                className="product-link"
+                                className="product-image product-link"
                                 onClick={()=>{onProductClick(productItem.id)}}
                                 >
                                 </img>
@@ -91,10 +92,8 @@ const Products = ({isAuthenticated, searchQuery, setSearchQuery}) => {
             </section>
             {
             showDialog && 
-            (!isAuthenticated ? 
+            (!isAuthenticated && 
             <InfoDialog isLoggedIn={false} setShowDialog={setShowDialog} /> 
-            :
-             <div></div>
             )}
         </div>
     )
