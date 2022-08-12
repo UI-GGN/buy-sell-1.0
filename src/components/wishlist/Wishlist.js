@@ -59,13 +59,13 @@ const Wishlist = () => {
                             </div>
                             <div className="wishlist-button-section">
                                 <button 
-                                className="button"
+                                className="button wishlist-item-button"
                                 onClick={() => addToCart(product.id)}
                                 >
-                                    Add to cart
+                                    Add to Cart
                                 </button>
                                 <button 
-                                className="button remove-button"
+                                className="button wishlist-item-button remove-button"
                                 onClick={() => removeFromWislist(product.id)}
                                 >
                                     Remove

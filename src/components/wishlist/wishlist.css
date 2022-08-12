@@ -35,7 +35,13 @@
 }
 
 .remove-button {
-    background-color: rgb(238, 70, 70);
+    background-color: rgb(233, 88, 88);
+}
+
+.wishlist-item-button {
+    padding: 7px 15px;
+    height: 35px;
+    text-transform: none;
 }
 
 .empty-container {
@@ -54,5 +60,8 @@
     height: 200px !important;
     width: 200px !important;
     opacity: 10%;
-    /* transform: scale(4); */
+}
+
+:root { 
+    --toastify-toast-width: "unset"
 }
