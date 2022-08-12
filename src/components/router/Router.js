@@ -96,12 +96,16 @@ const RootRouter = () => {
                     </ProtectedRoute>
                 } 
             />
-            <Route path="/products/:id" 
+            <Route path="/products/:id"
                 element={
-                    <div>
-                        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} />
-                        <div className="container">< ProductInfo isAuthenticated={isAuthenticated}/></div>
-                    </div>
+                    <ProtectedRoute redirectTo={"/"}>
+                        <div>
+                            <Header isAuthenticated={isAuthenticated} onLogout={handleLogout}/>
+                            <div className="container">
+                            < ProductInfo isAuthenticated={isAuthenticated}/>
+                            </div>
+                        </div>
+                    </ProtectedRoute>
                 } 
             />
         </Routes>
