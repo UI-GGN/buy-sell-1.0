@@ -3,7 +3,7 @@
     justify-content: space-between;
     margin-block: 30px;
     padding: 25px 40px;
-    border: 0.1px solid rgb(40, 37, 37);
+    border: 0.1px solid rgb(40 37 37);
     border-radius: 4px;
 }
 
@@ -34,7 +34,6 @@
     width: 20px;
     text-align: center;
     outline: none;
-    /* border: none; */
 }
 
 .quantity-title {
@@ -75,5 +74,5 @@
     text-transform: none;
     padding: 5px 10px;
     margin-block: 5px;
-    background-color: rgb(234, 91, 91);
+    background-color: rgb(234 91 91);
 }

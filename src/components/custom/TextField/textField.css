@@ -15,7 +15,7 @@
 
 .text-field input {
     width: 100%;
-    -webkit-appearance: none;
+    appearance: none;
     text-align: inherit;
     padding: 10px;
     border: none;
@@ -60,14 +60,14 @@ div.text-field.error div.line > div {
 }
 
 div.text-field.error input {
-    background: rgba(255, 0, 0, 0.125) !important;
+    background: rgb(255 0 0 / 12.5%) !important;
 }
 
 .toggle-password-button {
     width: fit-content;
     height: fit-content;
     align-self: flex-end;
-    padding: 8px 10px 7px 10px;
+    padding: 8px 10px 7px;
     box-shadow: none;
     border: none;
     cursor: pointer;
@@ -97,8 +97,6 @@ div.text-field.error input {
     position: absolute;
     font-size: 14px;
     color: #3c69ef;
-    /* top:15px; */
-    /* left: 10px; */
     background-color: transparent !important;
     z-index: 1000;
     padding: 0 !important;

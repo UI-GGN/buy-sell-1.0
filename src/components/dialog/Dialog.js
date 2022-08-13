@@ -8,7 +8,7 @@ const Dialog = ({ setShowDialog, ...props }) => {
                 onClick={() => {
                     setShowDialog(false)
                 }}
-                className="dialogBackground"
+                className="dialog-background"
             >
                 <div
                     onClick={(e) => {

@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 3px -1px rgb(0 0 0 / 20%);
 }
 
 .logo {
@@ -32,8 +32,6 @@
 }
 
 .header-button {
-    /* background-color: white !important; */
-    /* color: black !important; */
     width: 95px;
     height: 35px !important;
     margin-inline: 10px;
@@ -56,18 +54,7 @@
 .profile p {
     margin: 0 5px 0 0;
     font-size: 15px;
-    /* font-weight: bold; */
 }
-
-/* .profile button {
-    transform: scale(0.8);
-    background-color: transparent;
-    size: 15px;
-    position: relative;
-    top: 2px;
-    color: white;
-    border: none;
-} */
 
 .profile button:hover {
     cursor: pointer;
@@ -99,7 +86,6 @@
     flex-direction: column;
     align-items: center;
     width: 70px;
-    /* padding-inline: 10px 30px; */
 }
 
 .indicator {
@@ -111,7 +97,7 @@
 }
 
 .dropdown-welcome {
-    margin: 0 0 15px 0;
+    margin: 0 0 15px;
 }
 
 .button-section {
@@ -120,16 +106,11 @@
 
 .dropdown hr {
     margin-block: 15px;
-    opacity: 40%;
+    opacity: 0.4;
 }
 
 .dropdown p {
-    margin: 5px 0 7px 0;
-}
-
-.dropdown p:hover {
-    cursor: pointer;
-    font-weight: bold;
+    margin: 5px 0 7px;
 }
 
 .welcome-user {
@@ -144,6 +125,11 @@
 .welcome-user p:hover {
     cursor: text;
     font-weight: normal;
+}
+
+.dropdown p:hover {
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .dropdown #username {

@@ -13,9 +13,8 @@
     justify-content: space-between;
     margin-block: 30px;
     padding: 25px 40px;
-    border: 0.1px solid rgb(40, 37, 37);
+    border: 0.1px solid rgb(40 37 37);
     border-radius: 4px;
-    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px 0px;; */
 }
 
 .wishlist-image {
@@ -36,7 +35,7 @@
 }
 
 .remove-button {
-    background-color: rgb(233, 88, 88);
+    background-color: rgb(233 88 88);
 }
 
 .wishlist-item-button {
@@ -60,7 +59,7 @@
 .empty-icon {
     height: 200px !important;
     width: 200px !important;
-    opacity: 10%;
+    opacity: 0.1;
 }
 
 :root {
