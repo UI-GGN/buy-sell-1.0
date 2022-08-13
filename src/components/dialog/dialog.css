@@ -12,7 +12,7 @@
 
 .dialog {
     background-color: white;
-    padding: 0 50px 25px 50px ;
+    padding: 0 50px 25px 50px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
     flex-direction: column;
@@ -20,10 +20,10 @@
     justify-content: center;
     width: max-content;
     height: max-content;
-    
 }
 
-#button-container, .dialog p {
+#button-container,
+.dialog p {
     display: flex;
     justify-content: space-around;
     margin: 15px 20px;
@@ -35,14 +35,13 @@
 }
 
 #button-container button {
-    width: 90px ;
-    height: 35px ;
+    width: 90px;
+    height: 35px;
     padding: 5px 15px;
     font-size: small;
     font-weight: bold;
     text-align: center;
 }
-
 
 .close-container {
     width: 100%;

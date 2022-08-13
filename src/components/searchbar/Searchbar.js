@@ -1,29 +1,28 @@
-import React from "react";
-import SearchIcon from '@mui/icons-material/Search';
+import React from "react"
+import SearchIcon from "@mui/icons-material/Search"
 import "./searchbar.css"
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
-const Searchbar = ({setSearchQuery}) => {
-    const navigate = useNavigate();
+const Searchbar = ({ setSearchQuery }) => {
+    const navigate = useNavigate()
     const submitSearch = (event) => {
-        event.preventDefault();
-        setSearchQuery(event.target[0].value);
-        navigate("/?s="+event.target[0].value);
+        event.preventDefault()
+        setSearchQuery(event.target[0].value)
+        navigate("/?s=" + event.target[0].value)
     }
 
-    return(
+    return (
         <div className="search-container">
-            <form onSubmit={(e) => submitSearch(e)}
-            >
+            <form onSubmit={(e) => submitSearch(e)}>
                 <div className="search-bar-container">
                     <input
-                    className="search-input"
-                    type="text"
-                    placeholder="Search for products"
-                    name="s"
+                        className="search-input"
+                        type="text"
+                        placeholder="Search for products"
+                        name="s"
                     />
                     <button className="search-button">
-                        <SearchIcon/>
+                        <SearchIcon />
                     </button>
                 </div>
             </form>
@@ -31,4 +30,4 @@ const Searchbar = ({setSearchQuery}) => {
     )
 }
 
-export default Searchbar;
+export default Searchbar

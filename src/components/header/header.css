@@ -27,14 +27,14 @@
     display: flex;
 }
 
-.inner-icons-section{
+.inner-icons-section {
     display: flex;
 }
 
 .header-button {
     /* background-color: white !important; */
     /* color: black !important; */
-    width: 95px ;
+    width: 95px;
     height: 35px !important;
     margin-inline: 10px;
     padding: 5px 12px !important;
@@ -73,7 +73,7 @@
     cursor: pointer;
 }
 
-.icon-button{
+.icon-button {
     background-color: transparent;
     border: none;
     padding: 0;
@@ -87,11 +87,14 @@
 
 .icon-title {
     margin: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
     font-size: 13px;
 }
 
-.profile-icon, .cart-icon, .wishlist-icon {
+.profile-icon,
+.cart-icon,
+.wishlist-icon {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,7 +102,7 @@
     /* padding-inline: 10px 30px; */
 }
 
-.indicator{
+.indicator {
     height: 0;
     width: 40px;
     border: 2px solid black;

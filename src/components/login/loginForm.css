@@ -16,7 +16,8 @@
     margin-block-start: 20px;
 }
 
-.login-form, .register-form {
+.login-form,
+.register-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,8 +45,6 @@
     margin: 10px 20px 20px 20px;
 }
 
-
-
 .footer {
     display: flex;
     align-items: center;
@@ -60,10 +59,6 @@
     margin-block: 10px 20px;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
     transform: scale(1.3);
 }
-
-
-
-

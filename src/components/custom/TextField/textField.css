@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     text-align: inherit;
-    border: solid 1px #AAA;
+    border: solid 1px #aaa;
     border-radius: 3px;
 }
 
@@ -48,7 +48,7 @@ div.line > div {
 }
 
 div.text-field.focus input {
-    background-color: #DEE9FA !important;
+    background-color: #dee9fa !important;
 }
 
 div.text-field.focus div.line > div {
@@ -99,8 +99,8 @@ div.text-field.error input {
     color: #3c69ef;
     /* top:15px; */
     /* left: 10px; */
-    background-color:transparent !important;
-    z-index:1000 ;
+    background-color: transparent !important;
+    z-index: 1000;
     padding: 0 !important;
     margin: 0;
 }

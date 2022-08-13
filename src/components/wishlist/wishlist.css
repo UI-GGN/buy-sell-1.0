@@ -3,7 +3,8 @@
     flex-direction: column;
 }
 
-.wishlist-item p, .wishlist-item h4 {
+.wishlist-item p,
+.wishlist-item h4 {
     margin-block: 5px;
 }
 
@@ -62,6 +63,6 @@
     opacity: 10%;
 }
 
-:root { 
-    --toastify-toast-width: "unset"
+:root {
+    --toastify-toast-width: "unset";
 }

@@ -1,72 +1,75 @@
-import React, {useState} from "react";
-import productList from "../products/ProductList";
-import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import "./wishlist.css";
+import React, { useState } from "react"
+import productList from "../products/ProductList"
+import HeartBrokenIcon from "@mui/icons-material/HeartBroken"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import "./wishlist.css"
 
 const Wishlist = () => {
-    const username = localStorage.getItem("username");
-    const [wishlist, setWishlist] = useState(JSON.parse(localStorage.getItem("wishlist")) || "");
-    const cart = JSON.parse(localStorage.getItem("cart"));
+    const username = localStorage.getItem("username")
+    const [wishlist, setWishlist] = useState(
+        JSON.parse(localStorage.getItem("wishlist")) || ""
+    )
+    const cart = JSON.parse(localStorage.getItem("cart"))
 
-    const products = productList.filter( product => {
+    const products = productList.filter((product) => {
         return wishlist[username].includes(product.id)
     })
 
     const removeFromWislist = (productId) => {
-        let updatedWishlist = {...wishlist};
-        let index = updatedWishlist[username].indexOf(productId);
-        if (index > -1) updatedWishlist[username].splice(index, 1);
-        setWishlist(updatedWishlist);
-        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-        toast.info("Item has been removed from the Wishlist");
+        let updatedWishlist = { ...wishlist }
+        let index = updatedWishlist[username].indexOf(productId)
+        if (index > -1) updatedWishlist[username].splice(index, 1)
+        setWishlist(updatedWishlist)
+        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist))
+        toast.info("Item has been removed from the Wishlist")
     }
 
     const addToCart = (productId) => {
-        if(cart[username]["items"].includes(productId)) {
+        if (cart[username]["items"].includes(productId)) {
             cart[username]["count"][productId] += 1
+        } else {
+            cart[username]["items"].push(productId)
+            cart[username]["count"][productId] = 1
         }
-        else {
-            cart[username]["items"].push(productId);
-            cart[username]["count"][productId] = 1;
-        }
-         
-        localStorage.setItem("cart", JSON.stringify(cart));
-        toast.info("Item has been added to the Cart");
+
+        localStorage.setItem("cart", JSON.stringify(cart))
+        toast.info("Item has been added to the Cart")
     }
 
-    return(
+    return (
         <section className="stack">
             <h2>Your Wishlist</h2>
             {products.length === 0 ? (
                 <div className="empty-container">
-                <HeartBrokenIcon className="empty-icon"/>
-                <p>Your wishlist is empty. Start adding items.</p>
-            </div>
+                    <HeartBrokenIcon className="empty-icon" />
+                    <p>Your wishlist is empty. Start adding items.</p>
+                </div>
             ) : (
                 products.map((product, index) => {
-                    return(
+                    return (
                         <div className="wishlist-item-container">
                             <div className="wishlist-item" key={index}>
                                 <img
-                                className="wishlist-image"
-                                src={product.image}
-                                alt={product.product + "image"}>
-                                </img>
+                                    className="wishlist-image"
+                                    src={product.image}
+                                    alt={product.product + "image"}
+                                ></img>
                                 <h4>{product.product}</h4>
                                 <p>{"Rs. " + product.price}</p>
                             </div>
                             <div className="wishlist-button-section">
-                                <button 
-                                className="button wishlist-item-button"
-                                onClick={() => addToCart(product.id)}
+                                <button
+                                    className="button wishlist-item-button"
+                                    onClick={() => addToCart(product.id)}
                                 >
                                     Add to Cart
                                 </button>
-                                <button 
-                                className="button wishlist-item-button remove-button"
-                                onClick={() => removeFromWislist(product.id)}
+                                <button
+                                    className="button wishlist-item-button remove-button"
+                                    onClick={() =>
+                                        removeFromWislist(product.id)
+                                    }
                                 >
                                     Remove
                                 </button>
@@ -74,22 +77,21 @@ const Wishlist = () => {
                         </div>
                     )
                 })
-            
             )}
             <ToastContainer
-            position="bottom-center"
-            autoClose={2000}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick
-            theme="dark"
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
+                position="bottom-center"
+                autoClose={2000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                theme="dark"
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
             />
         </section>
     )
 }
 
-export default Wishlist;
+export default Wishlist

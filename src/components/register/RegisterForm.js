@@ -1,54 +1,61 @@
-import React, { useState } from "react";
-import "../login/loginForm.css";
-import TextField from "../custom/TextField/TextField";
-import Button from "../custom/button/Button";
-import { registerDefaults, validateField } from "../../services/registerService";
-import useRegister from "../../customHooks/useRegister";
+import React, { useState } from "react"
+import "../login/loginForm.css"
+import TextField from "../custom/TextField/TextField"
+import Button from "../custom/button/Button"
+import { registerDefaults, validateField } from "../../services/registerService"
+import useRegister from "../../customHooks/useRegister"
 
+const RegisterForm = ({ onRegister, isAuthenticated, authMode }) => {
+    const [fieldValues, setFieldValues] = useState(registerDefaults)
+    const [checked, setChecked] = useState(false)
+    const [isFormValid, setIsFormValid] = useState(false)
+    const [enableSubmit, setEnableSubmit] = useState(false)
 
-const RegisterForm = ({onRegister, isAuthenticated, authMode}) => {
-    const [fieldValues, setFieldValues] = useState(registerDefaults);
-    const [checked, setChecked] = useState(false);
-    const [isFormValid, setIsFormValid] = useState(false);
-    const [enableSubmit, setEnableSubmit] = useState(false);
-
-    const {handleRegister, notification} = useRegister(onRegister);
+    const { handleRegister, notification } = useRegister(onRegister)
 
     const [isValid, setIsValid] = useState({
-        name: {err: false, errMsg: ""},
-        username: {err: false, errMsg: ""},
-        phone: {err: false, errMsg: ""},
-        email: {err: false, errMsg: ""},
-        password: {err: false, errMsg: ""},
-        confirmPassword: {err: false, errMsg: ""}
-    });
+        name: { err: false, errMsg: "" },
+        username: { err: false, errMsg: "" },
+        phone: { err: false, errMsg: "" },
+        email: { err: false, errMsg: "" },
+        password: { err: false, errMsg: "" },
+        confirmPassword: { err: false, errMsg: "" },
+    })
 
     const handleCheckChange = (event) => {
-        setChecked(event.target.checked);
-        if(isFormValid) {
-             event.target.checked ? setEnableSubmit(true) : setEnableSubmit(false);
+        setChecked(event.target.checked)
+        if (isFormValid) {
+            event.target.checked
+                ? setEnableSubmit(true)
+                : setEnableSubmit(false)
         }
     }
 
     const handleFieldChange = (event) => {
-        const {name, value} = event.target;
-        const updatedFieldValues = {...fieldValues, [name] : value};
-        setFieldValues(updatedFieldValues);
-        let response = (name === "confirmPassword" 
-        ? validateField(name, value, fieldValues.password) 
-        : validateField(name, value));
-        response === true 
-        ? setIsValid({...isValid, [name]:{err:false, errMsg:""}}) 
-        : setIsValid({...isValid, [name]:{err:true, errMsg:[response]}});
+        const { name, value } = event.target
+        const updatedFieldValues = { ...fieldValues, [name]: value }
+        setFieldValues(updatedFieldValues)
+        let response =
+            name === "confirmPassword"
+                ? validateField(name, value, fieldValues.password)
+                : validateField(name, value)
+        response === true
+            ? setIsValid({ ...isValid, [name]: { err: false, errMsg: "" } })
+            : setIsValid({
+                  ...isValid,
+                  [name]: { err: true, errMsg: [response] },
+              })
 
-        if(Object.values(updatedFieldValues).every(field => field !== "") && 
-        Object.values(isValid).every(field => field.err === false)){
-            setIsFormValid(true);
+        if (
+            Object.values(updatedFieldValues).every((field) => field !== "") &&
+            Object.values(isValid).every((field) => field.err === false)
+        ) {
+            setIsFormValid(true)
         }
     }
 
-    return(
-        <div className="form-container" >
+    return (
+        <div className="form-container">
             {/* <div className="button-container">
                 <Button class={authMode==="seller" ? "unselected" : ""}
                 onClick={() => {
@@ -67,75 +74,76 @@ const RegisterForm = ({onRegister, isAuthenticated, authMode}) => {
                     Register as a Seller
                 </Button>
             </div> */}
-            <form 
-            className="register-form"
-            onSubmit={(e) => {
-                e.preventDefault();
-                handleRegister(fieldValues, authMode)
-            }}
+            <form
+                className="register-form"
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    handleRegister(fieldValues, authMode)
+                }}
             >
                 <TextField
-                label="Name"
-                name="name"
-                value={fieldValues.name}
-                isValid={isValid.name}
-                handleChange={handleFieldChange}
+                    label="Name"
+                    name="name"
+                    value={fieldValues.name}
+                    isValid={isValid.name}
+                    handleChange={handleFieldChange}
                 />
                 <TextField
-                label="Username"
-                name="username"
-                value={fieldValues.username}
-                isValid={isValid.username}
-                handleChange={handleFieldChange}
+                    label="Username"
+                    name="username"
+                    value={fieldValues.username}
+                    isValid={isValid.username}
+                    handleChange={handleFieldChange}
                 />
                 <TextField
-                label="Email"
-                name="email"
-                value={fieldValues.email}
-                isValid={isValid.email}
-                handleChange={handleFieldChange}
+                    label="Email"
+                    name="email"
+                    value={fieldValues.email}
+                    isValid={isValid.email}
+                    handleChange={handleFieldChange}
                 />
                 <TextField
-                label="Phone"
-                name="phone"
-                type="tel"
-                value={fieldValues.phone}
-                isValid={isValid.phone}
-                handleChange={handleFieldChange}
+                    label="Phone"
+                    name="phone"
+                    type="tel"
+                    value={fieldValues.phone}
+                    isValid={isValid.phone}
+                    handleChange={handleFieldChange}
                 />
                 <TextField
-                label="Password"
-                name="password"
-                type="password"
-                value={fieldValues.password}
-                isValid={isValid.password}
-                handleChange={handleFieldChange}
+                    label="Password"
+                    name="password"
+                    type="password"
+                    value={fieldValues.password}
+                    isValid={isValid.password}
+                    handleChange={handleFieldChange}
                 />
                 <TextField
-                label="Confirm Password"
-                name="confirmPassword"
-                type="password"
-                value={fieldValues.confirmPassword}
-                isValid={isValid.confirmPassword}
-                handleChange={handleFieldChange}
+                    label="Confirm Password"
+                    name="confirmPassword"
+                    type="password"
+                    value={fieldValues.confirmPassword}
+                    isValid={isValid.confirmPassword}
+                    handleChange={handleFieldChange}
                 />
                 <div className="check-box agree-terms">
-                    <input type="checkbox" checked={checked} onChange={(e) => handleCheckChange(e)} id = "agree-terms"/>
-                    <label htmlFor="agree-terms">I have read and agree to the terms</label>
+                    <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={(e) => handleCheckChange(e)}
+                        id="agree-terms"
+                    />
+                    <label htmlFor="agree-terms">
+                        I have read and agree to the terms
+                    </label>
                 </div>
-                <Button
-                type="submit"
-                disabled={!enableSubmit}
-                >
+                <Button type="submit" disabled={!enableSubmit}>
                     Sign In
                 </Button>
             </form>
             {notification()}
         </div>
-    );
-                
-           
-    
+    )
 }
 
-export default RegisterForm;
+export default RegisterForm

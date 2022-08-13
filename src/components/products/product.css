@@ -24,7 +24,8 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 8px 16px 0px;
 }
 
-.product-card p, .product-card h3 {
+.product-card p,
+.product-card h3 {
     align-self: flex-start;
     margin: 7px 20px;
 }
@@ -49,6 +50,7 @@
     right: 10px;
 }
 
-.product-link:hover, .fav-icon:hover {
+.product-link:hover,
+.fav-icon:hover {
     cursor: pointer;
 }
