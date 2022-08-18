@@ -204,7 +204,7 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
 Header.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     onLogout: PropTypes.func.isRequired,
-    setSearchQuery: PropTypes.func.isRequired,
+    setSearchQuery: PropTypes.func,
 }
 
 export default Header
