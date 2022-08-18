@@ -149,7 +149,7 @@ const RegisterForm = ({ onRegister, authMode }) => {
 
 RegisterForm.propTypes = {
     onRegister: PropTypes.func.isRequired,
-    authMode: PropTypes.string.isRequired
+    authMode: PropTypes.string.isRequired,
 }
 
 export default RegisterForm

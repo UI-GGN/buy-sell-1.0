@@ -116,7 +116,7 @@ const LoginForm = ({ onLogin, authMode }) => {
 
 LoginForm.propTypes = {
     onLogin: PropTypes.func.isRequired,
-    authMode: PropTypes.string.isRequired
+    authMode: PropTypes.string.isRequired,
 }
 
 export default LoginForm

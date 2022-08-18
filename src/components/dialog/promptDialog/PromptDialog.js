@@ -47,7 +47,7 @@ const PromptDialog = ({ isLogin, setShowDialog }) => {
 
 PromptDialog.propTypes = {
     isLogin: PropTypes.bool.isRequired,
-    setShowDialog: PropTypes.func.isRequired
+    setShowDialog: PropTypes.func.isRequired,
 }
 
 export default PromptDialog

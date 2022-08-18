@@ -32,7 +32,7 @@ const Searchbar = ({ setSearchQuery }) => {
 }
 
 Searchbar.propTypes = {
-    setSearchQuery: PropTypes.func.isRequired
+    setSearchQuery: PropTypes.func.isRequired,
 }
 
 export default Searchbar

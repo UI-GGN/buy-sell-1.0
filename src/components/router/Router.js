@@ -176,7 +176,7 @@ const RootRouter = () => {
 
 RootRouter.propTypes = {
     children: PropTypes.node.isRequired,
-    redirectTo: PropTypes.string.isRequired
+    redirectTo: PropTypes.string.isRequired,
 }
 
 export default RootRouter

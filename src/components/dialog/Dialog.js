@@ -36,7 +36,7 @@ const Dialog = ({ setShowDialog, ...props }) => {
 
 Dialog.propTypes = {
     setShowDialog: PropTypes.func.isRequired,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
 }
 
 export default Dialog

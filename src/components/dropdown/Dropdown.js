@@ -12,7 +12,7 @@ const Dropdown = (props) => {
 
 Dropdown.propTypes = {
     children: PropTypes.node.isRequired,
-    style: PropTypes.object.isRequired
+    style: PropTypes.object.isRequired,
 }
 
 export default Dropdown

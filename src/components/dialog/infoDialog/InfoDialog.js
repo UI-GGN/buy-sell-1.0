@@ -13,7 +13,7 @@ const InfoDialog = ({ isLoggedIn, setShowDialog }) => {
 
 InfoDialog.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
-    setShowDialog: PropTypes.func.isRequired
+    setShowDialog: PropTypes.func.isRequired,
 }
 
 export default InfoDialog

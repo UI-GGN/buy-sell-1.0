@@ -110,7 +110,7 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
 Products.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     searchQuery: PropTypes.string.isRequired,
-    setSearchQuery: PropTypes.func.isRequired
+    setSearchQuery: PropTypes.func.isRequired,
 }
 
 export default Products
