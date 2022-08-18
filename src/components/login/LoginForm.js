@@ -5,6 +5,7 @@ import TextField from "../custom/TextField/TextField"
 import Button from "../custom/button/Button"
 import { loginDefaults, validateField } from "../../services/loginService"
 import useLogin from "../../customHooks/useLogin"
+import PropTypes from "prop-types"
 
 const LoginForm = ({ onLogin, authMode }) => {
     const [fieldValues, setFieldValues] = useState(loginDefaults)
@@ -111,6 +112,11 @@ const LoginForm = ({ onLogin, authMode }) => {
             {notification()}
         </div>
     )
+}
+
+LoginForm.propTypes = {
+    onLogin: PropTypes.func.isRequired,
+    authMode: PropTypes.string.isRequired
 }
 
 export default LoginForm

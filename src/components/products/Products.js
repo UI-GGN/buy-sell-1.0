@@ -6,6 +6,7 @@ import InfoDialog from "../dialog/infoDialog/InfoDialog"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
 import { useNavigate } from "react-router-dom"
+import PropTypes from "prop-types"
 
 const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
     const [showDialog, setShowDialog] = useState(false)
@@ -104,6 +105,12 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
             )}
         </div>
     )
+}
+
+Products.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    searchQuery: PropTypes.string.isRequired,
+    setSearchQuery: PropTypes.func.isRequired
 }
 
 export default Products

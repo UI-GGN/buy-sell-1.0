@@ -9,6 +9,7 @@ import Products from "../products/Products"
 import Wishlist from "../wishlist/Wishlist"
 import Cart from "../cart/Cart"
 import ProductInfo from "../products/ProductInfo"
+import PropTypes from "prop-types"
 
 const RootRouter = () => {
     const { handleLogin, handleRegister, handleLogout, isAuthenticated } =
@@ -171,6 +172,11 @@ const RootRouter = () => {
             />
         </Routes>
     )
+}
+
+RootRouter.propTypes = {
+    children: PropTypes.node.isRequired,
+    redirectTo: PropTypes.string.isRequired
 }
 
 export default RootRouter

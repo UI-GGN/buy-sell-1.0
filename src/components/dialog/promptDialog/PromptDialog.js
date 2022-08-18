@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import "../dialog.css"
 import Dialog from "../Dialog"
 import Button from "../../custom/button/Button"
+import PropTypes from "prop-types"
 
 const PromptDialog = ({ isLogin, setShowDialog }) => {
     const navigate = useNavigate()
@@ -42,6 +43,11 @@ const PromptDialog = ({ isLogin, setShowDialog }) => {
             </div>
         </Dialog>
     )
+}
+
+PromptDialog.propTypes = {
+    isLogin: PropTypes.bool.isRequired,
+    setShowDialog: PropTypes.func.isRequired
 }
 
 export default PromptDialog

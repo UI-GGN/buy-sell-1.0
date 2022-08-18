@@ -1,5 +1,6 @@
 import React from "react"
 import "./dialog.css"
+import PropTypes from "prop-types"
 
 const Dialog = ({ setShowDialog, ...props }) => {
     return (
@@ -31,6 +32,11 @@ const Dialog = ({ setShowDialog, ...props }) => {
             </div>
         </>
     )
+}
+
+Dialog.propTypes = {
+    setShowDialog: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired
 }
 
 export default Dialog

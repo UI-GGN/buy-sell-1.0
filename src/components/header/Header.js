@@ -9,6 +9,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined"
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
 import Dropdown from "../dropdown/Dropdown"
 import Searchbar from "../searchbar/Searchbar"
+import PropTypes from "prop-types"
 
 const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
     const [showDropdown, setShowDropdown] = useState(false)
@@ -198,6 +199,12 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
             </nav>
         </div>
     )
+}
+
+Header.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    onLogout: PropTypes.func.isRequired,
+    setSearchQuery: PropTypes.func.isRequired
 }
 
 export default Header

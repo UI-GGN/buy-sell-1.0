@@ -4,6 +4,7 @@ import TextField from "../custom/TextField/TextField"
 import Button from "../custom/button/Button"
 import { registerDefaults, validateField } from "../../services/registerService"
 import useRegister from "../../customHooks/useRegister"
+import PropTypes from "prop-types"
 
 const RegisterForm = ({ onRegister, authMode }) => {
     const [fieldValues, setFieldValues] = useState(registerDefaults)
@@ -144,6 +145,11 @@ const RegisterForm = ({ onRegister, authMode }) => {
             {notification()}
         </div>
     )
+}
+
+RegisterForm.propTypes = {
+    onRegister: PropTypes.func.isRequired,
+    authMode: PropTypes.string.isRequired
 }
 
 export default RegisterForm

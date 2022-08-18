@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
+import PropTypes from "prop-types"
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 import "./textField.css"
 
-const TextField = ({ label, type, name, value, handleChange, isValid }) => {
+const TextField = ({ name, value, label, type, handleChange, isValid }) => {
     const [focused, setFocused] = useState(false)
     const [showLabel, setShowLabel] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
@@ -79,6 +80,15 @@ const TextField = ({ label, type, name, value, handleChange, isValid }) => {
             </div>
         </div>
     )
+}
+
+TextField.propTypes = {
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    isValid: PropTypes.object.isRequired,
 }
 
 export default TextField
