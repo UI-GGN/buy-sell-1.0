@@ -12,6 +12,8 @@
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.3.0",
         "@testing-library/user-event": "^13.5.0",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.6",
         "formik": "^2.2.9",
         "js-search": "^2.0.0",
         "react": "^18.2.0",
@@ -28,7 +30,8 @@
         "eject": "react-scripts eject",
         "prepare": "husky install",
         "prettier": "prettier --write --ignore-unknown .",
-        "stylelint": "npx stylelint '**/*.css'"
+        "stylelint": "npx stylelint '**/*.css'",
+        "eslint": "eslint --max-warnings=0 ."
     },
     "eslintConfig": {
         "extends": [
@@ -49,10 +52,15 @@
         ]
     },
     "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.33.1",
+        "@typescript-eslint/parser": "^5.33.1",
+        "eslint": "^8.22.0",
+        "eslint-plugin-react": "^7.30.1",
         "husky": "^8.0.0",
         "prettier": "2.7.1",
         "stylelint": "^14.10.0",
         "stylelint-config-prettier": "^9.0.3",
-        "stylelint-config-standard": "^27.0.0"
+        "stylelint-config-standard": "^27.0.0",
+        "typescript": "^4.7.4"
     }
 }
