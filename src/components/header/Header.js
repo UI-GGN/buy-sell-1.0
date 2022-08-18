@@ -22,8 +22,8 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
 
     const routeHome = () => {
         setShowDropdown(false)
-        window.location.pathname === "/" && setSearchQuery("")
         navigate("/")
+        window.location.pathname === "/" && setSearchQuery("")
     }
 
     const routeLogin = () => {
@@ -74,7 +74,7 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                     <p>Orders</p>
                 </div>
                 <div>
-                    <p>Wishlist</p>
+                    <p onClick={() => navigate("/my/wishlist")}>Wishlist</p>
                 </div>
                 <div>
                     <p>My Profile</p>
@@ -102,7 +102,7 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                         <img
                             className="sellers-logo"
                             src={SellersPortalLogo}
-                            alt="Logo for CBP Sellers Portal"
+                            alt="CBP Sellers Portal Logo"
                         />
                     ) : (
                         <img
@@ -127,7 +127,6 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                                 }}
                             >
                                 <PersonOutlineOutlinedIcon />
-                                {/* <img src="/Users/maddy/Desktop/Projects/CBP/icons8-customer-100.png"></img> */}
                             </button>
                             <p className="icon-title">Profile</p>
                             {showDropdown && (
@@ -139,7 +138,6 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                                                 ? { right: "80px" }
                                                 : { right: "0px" }
                                         }
-                                        setShowDropdown={setShowDropdown}
                                     >
                                         {isAuthenticated
                                             ? username()

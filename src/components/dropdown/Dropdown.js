@@ -1,7 +1,7 @@
 import React from "react"
 import "./dropdown.css"
 
-const Dropdown = ({ openDropdown, ...props }) => {
+const Dropdown = (props) => {
     return (
         <div className="dropdown" style={props.style}>
             {props.children}

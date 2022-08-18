@@ -6,7 +6,7 @@ import Button from "../custom/button/Button"
 import { loginDefaults, validateField } from "../../services/loginService"
 import useLogin from "../../customHooks/useLogin"
 
-const LoginForm = ({ isAuthenticated, onLogin, authMode }) => {
+const LoginForm = ({ onLogin, authMode }) => {
     const [fieldValues, setFieldValues] = useState(loginDefaults)
     const [enableSubmit, setEnableSubmit] = useState(false)
 

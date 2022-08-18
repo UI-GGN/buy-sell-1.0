@@ -48,7 +48,7 @@ const Wishlist = () => {
             ) : (
                 products.map((product, index) => {
                     return (
-                        <div className="wishlist-item-container">
+                        <div className="wishlist-item-container" key={index}>
                             <div className="wishlist-item" key={index}>
                                 <img
                                     className="wishlist-image"

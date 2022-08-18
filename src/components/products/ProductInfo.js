@@ -1,10 +1,11 @@
+import React from "react"
 import productList from "./ProductList"
 import "./productInfo.css"
 import { useSearchParams } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
-const ProductInfo = (props) => {
+const ProductInfo = () => {
     const [searchParams] = useSearchParams()
     const username = localStorage.getItem("username")
     const cart = JSON.parse(localStorage.getItem("cart"))
@@ -50,7 +51,7 @@ const ProductInfo = (props) => {
                 <div className="Bottom-box">
                     <h3>Services and Policies</h3>
                     <table>
-                        <tr class="delivery">
+                        <tr className="delivery">
                             <td>
                                 <div>
                                     <img

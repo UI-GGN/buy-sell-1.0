@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useNavigate } from "react-router-dom"
 import "../dialog.css"
 import Dialog from "../Dialog"
@@ -9,13 +9,11 @@ const PromptDialog = ({ isLogin, setShowDialog }) => {
 
     const routeLogin = (mode) => {
         setShowDialog(false)
-        //navigate("/login?authMode="+mode)
         navigate("/login", { state: { authMode: mode } })
     }
 
     const routeRegister = (mode) => {
         setShowDialog(false)
-        //navigate("/register?authMode="+mode)
         navigate("/register", { state: { authMode: mode } })
     }
 

@@ -5,7 +5,7 @@ import Button from "../custom/button/Button"
 import { registerDefaults, validateField } from "../../services/registerService"
 import useRegister from "../../customHooks/useRegister"
 
-const RegisterForm = ({ onRegister, isAuthenticated, authMode }) => {
+const RegisterForm = ({ onRegister, authMode }) => {
     const [fieldValues, setFieldValues] = useState(registerDefaults)
     const [checked, setChecked] = useState(false)
     const [isFormValid, setIsFormValid] = useState(false)
