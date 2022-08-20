@@ -34,21 +34,37 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
       loadProductsList(page);
     }
   };
-
   useEffect(() => {
-    setSearchQuery(params.get("s") || "");
     loadProductsList(page);
+    //setProductsList(productsService.getList(1));
+    setSearchQuery(params.get("s") || "");
+    // console.log(searchQuery);
+    console.log(productsList);
   }, []);
+  // useEffect(() => {
+  //   setProductsList(productsService.getList(1));
+  // });
+  // useEffect(() => {
+  //   setSearchQuery(params.get("s") || "");
+  // });
 
-  //   let products = productList;
+  // //   let products = productList;
 
-  if (searchQuery !== "") {
-    let items = new JsSearch.Search("product");
-    items.addIndex("product");
-    items.addDocuments(productList);
-    setProductsList(items.search(searchQuery));
-    // products = items.search(searchQuery);
-  }
+  // useEffect(() => {
+  //   let items = new JsSearch.Search("product");
+  //   items.addIndex("product");
+  //   items.addDocuments(productsList);
+  //   setProductsList(items.search(searchQuery));
+  // }, [searchQuery]);
+  useEffect(() => {
+    if (searchQuery !== "") {
+      let items = new JsSearch.Search("product");
+      items.addIndex("product");
+      items.addIndex("tags");
+      items.addDocuments(productList);
+      setProductsList(items.search(searchQuery));
+    }
+  }, [searchQuery]);
 
   const updateWishlist = (product) => {
     let updatedWishlist = { ...wishlist };
@@ -68,6 +84,7 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
     setLoading(true);
 
     const res = productsService.getList(page);
+    console.log("res", res);
     const newPage = page + 1;
     const newList = productsList.concat(res);
     const newListVariable = [...newList];
@@ -81,48 +98,48 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
     <div className="product-container">
       {searchQuery !== "" && <h2 className="results-title">Results</h2>}
       <section className="product-grid">
-        {/* {console.log("12453452345 - ", products)} */}
-        {productList.map((productItem, index) => {
-          return (
-            <div className="product-card" key={index}>
-              <img
-                src={productItem.image}
-                alt={productItem.product + " image"}
-                className="product-link"
-                onClick={() => {
-                  onProductClick(productItem.id);
-                }}
-              ></img>
-              <hr />
-              <div className="product-info-container">
-                <div>
-                  <h3
-                    className="product-link"
-                    onClick={() => {
-                      onProductClick(productItem.id);
-                    }}
-                  >
-                    {productItem.product}
-                  </h3>
-                  <p>{"Rs. " + productItem.price}</p>
+        {productsList &&
+          productsList.map((productItem, index) => {
+            return (
+              <div className="product-card" key={index}>
+                <img
+                  src={productItem.image}
+                  alt={productItem.product + " image"}
+                  className="product-link"
+                  onClick={() => {
+                    onProductClick(productItem.id);
+                  }}
+                ></img>
+                <hr />
+                <div className="product-info-container">
+                  <div>
+                    <h3
+                      className="product-link"
+                      onClick={() => {
+                        onProductClick(productItem.id);
+                      }}
+                    >
+                      {productItem.product}
+                    </h3>
+                    <p>{"Rs. " + productItem.price}</p>
+                  </div>
+                  {isAuthenticated &&
+                  wishlist[username].includes(productItem.id) ? (
+                    <FavoriteIcon
+                      className="fav-icon"
+                      style={{ color: "red" }}
+                      onClick={() => updateWishlist(productItem.id)}
+                    />
+                  ) : (
+                    <FavoriteBorderIcon
+                      className="fav-icon"
+                      onClick={() => updateWishlist(productItem.id)}
+                    />
+                  )}
                 </div>
-                {isAuthenticated &&
-                wishlist[username].includes(productItem.id) ? (
-                  <FavoriteIcon
-                    className="fav-icon"
-                    style={{ color: "red" }}
-                    onClick={() => updateWishlist(productItem.id)}
-                  />
-                ) : (
-                  <FavoriteBorderIcon
-                    className="fav-icon"
-                    onClick={() => updateWishlist(productItem.id)}
-                  />
-                )}
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </section>
       {showDialog &&
         (!isAuthenticated ? (
