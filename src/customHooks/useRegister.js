@@ -51,7 +51,7 @@ export default (onRegister) => {
         details.username = details.username.trim()
         details.email = details.email.trim().toLowerCase()
 
-        console.log(details)
+        //console.log(details)
 
         const response = onRegister(details, authMode)
         if (response === true) {
