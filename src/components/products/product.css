@@ -1,56 +1,56 @@
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .product-grid img {
-    height: 300px;
-    margin: 15px;
+  height: 300px;
+  margin: 15px;
 }
 
 .product-card {
-    margin: 10px 15px;
-    background-color: white;
-    height: max-content;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: rgb(0 0 0 / 25%) 0 4px 8px 0;
+  margin: 10px 15px;
+  background-color: white;
+  height: max-content;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgb(0 0 0 / 25%) 0 4px 8px 0;
 }
 
 .product-card:hover {
-    box-shadow: rgb(0 0 0 / 25%) 0 8px 16px 0;
+  box-shadow: rgb(0 0 0 / 25%) 0 8px 16px 0;
 }
 
 .product-card p,
 .product-card h3 {
-    align-self: flex-start;
-    margin: 7px 20px;
+  align-self: flex-start;
+  margin: 7px 20px;
 }
 
 .product-container {
-    margin: 100px 175px;
+  margin: 100px 175px;
 }
 
 .results-title {
-    padding-inline-start: 20px;
+  padding-inline-start: 20px;
 }
 
 .product-info-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .fav-icon {
-    position: relative;
-    right: 10px;
+  position: relative;
+  right: 10px;
 }
 
 .product-link:hover,
 .fav-icon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }

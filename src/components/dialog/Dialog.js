@@ -1,42 +1,42 @@
-import React from "react"
-import "./dialog.css"
-import PropTypes from "prop-types"
+import React from "react";
+import "./dialog.css";
+import PropTypes from "prop-types";
 
 const Dialog = ({ setShowDialog, ...props }) => {
-    return (
-        <>
-            <div
-                onClick={() => {
-                    setShowDialog(false)
-                }}
-                className="dialog-background"
+  return (
+    <>
+      <div
+        onClick={() => {
+          setShowDialog(false);
+        }}
+        className="dialog-background"
+      >
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          className="dialog"
+        >
+          <div className="close-container">
+            <button
+              className="dialog-close"
+              onClick={() => {
+                setShowDialog(false);
+              }}
             >
-                <div
-                    onClick={(e) => {
-                        e.stopPropagation()
-                    }}
-                    className="dialog"
-                >
-                    <div className="close-container">
-                        <button
-                            className="dialog-close"
-                            onClick={() => {
-                                setShowDialog(false)
-                            }}
-                        >
-                            X
-                        </button>
-                    </div>
-                    {props.children}
-                </div>
-            </div>
-        </>
-    )
-}
+              X
+            </button>
+          </div>
+          {props.children}
+        </div>
+      </div>
+    </>
+  );
+};
 
 Dialog.propTypes = {
-    setShowDialog: PropTypes.func.isRequired,
-    children: PropTypes.node.isRequired,
-}
+  setShowDialog: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
-export default Dialog
+export default Dialog;
