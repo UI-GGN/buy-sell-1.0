@@ -47,16 +47,6 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
     }
   }, [searchQuery]);
 
-  // let products = [...productList]
-
-  // if (searchQuery !== "") {
-  //     let items = new JsSearch.Search("product")
-  //     items.addIndex("product")
-  //     items.addIndex("tags")
-  //     items.addDocuments(productList)
-  //     products = items.search(searchQuery)
-  // }
-
   const updateWishlist = (product) => {
     let updatedWishlist = { ...wishlist };
     let addProduct = true;
@@ -72,12 +62,9 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
   };
   const loadProductsList = (page) => {
     const res = productsService.getList(page);
-    console.log("res", res);
     const newPage = page + 1;
     const newList = productsList.concat(res);
     const newListVariable = [...newList];
-    console.log("list --  ", newListVariable);
-
     setProductsList(newListVariable);
     setPage(newPage);
   };
