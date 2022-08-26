@@ -15,7 +15,7 @@ const TextField = ({ name, value, label, type, handleChange, isValid }) => {
   useEffect(() => {
     if (validateError) setShowError(isValid.err);
     value !== "" ? setShowLabel(true) : setShowLabel(false);
-  });
+  }, [validateError, isValid.err, value]);
 
   const togglePasswordVisibility = (event) => {
     event.preventDefault();

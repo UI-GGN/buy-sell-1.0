@@ -36,7 +36,7 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
   useEffect(() => {
     loadProductsList(page);
     setSearchQuery(params.get("s") || "");
-  }, []);
+  });
   useEffect(() => {
     if (searchQuery !== "") {
       let items = new JsSearch.Search("product");
