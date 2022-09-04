@@ -1,6 +1,6 @@
 const productList = [
   {
-    product: "HP Pavilion 14 16GB RAM",
+    name: "HP Pavilion 14 16GB RAM",
     id: "1",
     image: "https://m.media-amazon.com/images/I/81h346HzqML._SX679_.jpg",
     price: "35000",
@@ -10,7 +10,7 @@ const productList = [
     tags: ["laptops", "laptop", "hp", "pavilion", "electronics"],
   },
   {
-    product: "Slim-fit Casual Shirt",
+    name: "Slim-fit Casual Shirt",
     id: "2",
     image: "https://m.media-amazon.com/images/I/51XatSFVktL._AC_UL320_.jpg",
     price: "499",
@@ -20,7 +20,7 @@ const productList = [
     tags: ["clothing", "shirt", "men", "boys"],
   },
   {
-    product: "Fastrack Analog Men's Watch",
+    name: "Fastrack Analog Men's Watch",
     id: "3",
     image: "https://m.media-amazon.com/images/I/71WY7bEfkNL._UY879_.jpg",
     price: "765",
@@ -28,7 +28,7 @@ const productList = [
     tags: ["accessories", "watch", "men", "boys"],
   },
   {
-    product: "AELOMART Men's T-Shirt",
+    name: "AELOMART Men's T-Shirt",
     id: "4",
     image: "https://m.media-amazon.com/images/I/71O1QaI-sbL._UY879_.jpg",
     price: "599",
@@ -40,7 +40,7 @@ const productList = [
     tags: ["clothing", "tshirt", "t-shirt", "men", "boys"],
   },
   {
-    product: "Samsung Galaxy S21 5G",
+    name: "Samsung Galaxy S21 5G",
     id: "5",
     image: "https://m.media-amazon.com/images/I/91-uC3gGWGL._SY879_.jpg",
     price: "80999",
@@ -52,7 +52,7 @@ const productList = [
     tags: ["electronics", "mobile", "smartphone", "gadgets"],
   },
   {
-    product: "JBL Tune 510BT Headphones",
+    name: "JBL Tune 510BT Headphones",
     id: "6",
     image: "https://m.media-amazon.com/images/I/61kFL7ywsZS._SX679_.jpg",
     price: "2899",
@@ -62,17 +62,17 @@ const productList = [
     tags: ["electronics", "headphone", "headset", "gadgets"],
   },
   {
-    product: "Love & lemons celeste cardigan in blue",
+    name: "Love & lemons celeste cardigan in blue",
     id: "7",
     image:
-      "https://www.fashiongonerogue.com/wp-content/uploads/2022/03/For-Love-amp-Lemons-Celeste-Cardigan-in-Blue.-size-S-also-in-L-XS.jpg",
+      "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61oz2FZevUL._UY879_.jpg",
     price: "1282",
     description:
       "For Love & Lemons Celeste Cardigan in Blue. size S (also in L, XS) For Love & Lemons Celeste Cardigan in Blue. – size S (also in L, XS) 58% acrylic 29% viscose 9% nylon 4% wool. Made in China. Dry clean only. Front button closure. Side slip pockets. Fuzzy waffle knit fabric with banded hem. FORL-WK108. KFA21C401. Derived from those sun-soaked Lemonade Stand Days designers and owners, Gillian Mahin and Laura Hall are the masterminds behind the line For Love & Lemons. Born in Wyoming, finding their style niche in Australia and now based in Los Angeles, the collection is anything but conventional-rebelling against the standards of modern society. The line taunts with intrigue as a clash of colors and patterns are evoked by chic separates and devious dresses. Where the modern gypsy is punk, For Love & Lemons is a brand to relate to, for that girl that doesn’t follow trends, she makes them.",
     tags: ["clothing", "cardigan", "women", "girls"],
   },
   {
-    product: "Sorel women’s joan of arctic wedge ii zip bootie",
+    name: "Sorel women’s joan of arctic wedge ii zip bootie",
     id: "8",
     image:
       "https://www.fashiongonerogue.com/wp-content/uploads/2022/02/Sorel-Womens-Joan-Of-Arctic-Wedge-II-Zip-Bootie-.jpg",
@@ -82,7 +82,7 @@ const productList = [
     tags: ["fashion", "boots", "women", "girls"],
   },
   {
-    product: "Kate spade 57mm gradient polarized square sunglasses",
+    name: "Kate spade 57mm gradient polarized square sunglasses",
     id: "9",
     image:
       "https://www.fashiongonerogue.com/wp-content/uploads/2021/02/Womens-Kate-Spade-New-York-Lourdes-57mm-Gradient-Polarized-Square-Sunglasses-Peach-Brown-Pink-Gradient-600x920.jpg",
@@ -92,7 +92,7 @@ const productList = [
     tags: ["cooling glasses", "fashion", "sunglasses", "women", "girls"],
   },
   {
-    product: "Pearlette delicate stud earrings",
+    name: "Pearlette delicate stud earrings",
     id: "10",
     image:
       "https://www.fashiongonerogue.com/wp-content/uploads/2021/02/Womens-Kate-Spade-New-York-Pearlette-Delicate-Stud-Earrings.jpg",
@@ -102,7 +102,7 @@ const productList = [
     tags: ["clothing", "earrings", "fashion", "women", "girls"],
   },
   {
-    product: "Margaux leather satchel - Black",
+    name: "Margaux leather satchel - Black",
     id: "11",
     image:
       "https://www.fashiongonerogue.com/wp-content/uploads/2021/02/Kate-Spade-New-York-Medium-Margaux-Leather-Satchel-Black-600x920.jpg",
@@ -112,10 +112,10 @@ const productList = [
     tags: ["clothing", "handbag", "satchel", "women", "girls", "fashion"],
   },
   {
-    product: "Heart of gold bangle",
+    name: "Heart of gold bangle",
     id: "12",
     image:
-      "https://www.fashiongonerogue.com/wp-content/uploads/2018/09/Womens-Kate-Spade-New-York-Idiom-Heart-Of-Gold-Bangle.jpg",
+      "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/51oyzOnPJ1L._UX695_.jpg",
     price: "1599",
     description:
       "A slim, stackable bangle plated in lustrous 12-karat gold hides a meaningful “heart of gold” engraving inside. Style Name: Kate Spade New York Idiom – Heart Of Gold Bangle. Style Number: 551537",

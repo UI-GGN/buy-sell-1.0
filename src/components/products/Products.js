@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./product.css";
 import * as JsSearch from "js-search";
+import { useSelector } from "react-redux";
 import productList from "./ProductList";
-import productsService from "../../services/productsService";
+import useInfiniteScroll from "../../customHooks/useInfiniteScroll";
+import BackToTop from "react-back-to-top-button";
 import InfoDialog from "../dialog/infoDialog/InfoDialog";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +14,11 @@ import PropTypes from "prop-types";
 
 const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
   const [showDialog, setShowDialog] = useState(false);
-  const [productsList, setProductsList] = useState([]);
-  const [page, setPage] = useState(1);
+  const [products, setProducts] = useState(
+    useSelector((state) => state.products)
+  );
+  console.log(products);
+  const [isLoading, setIsLoading] = useInfiniteScroll(loadMoreProducts);
   const username = localStorage.getItem("username") || "";
   const [wishlist, setWishlist] = useState(
     JSON.parse(localStorage.getItem("wishlist")) || ""
@@ -25,26 +31,26 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
       : setShowDialog(true);
   };
 
-  window.onscroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
-      loadProductsList(page);
-    }
-  };
+  let items = new JsSearch.Search("product");
+  items.addIndex("product");
+  items.addIndex("tags");
+  items.addDocuments(productList);
+
+  function loadMoreProducts() {
+    setTimeout(() => {
+      setProducts((prevState) => [...prevState, ...products]);
+      setIsLoading(false);
+    }, 1000);
+  }
+
   useEffect(() => {
-    loadProductsList(page);
     setSearchQuery(params.get("s") || "");
   });
+
   useEffect(() => {
-    if (searchQuery !== "") {
-      let items = new JsSearch.Search("product");
-      items.addIndex("product");
-      items.addIndex("tags");
-      items.addDocuments(productList);
-      setProductsList(items.search(searchQuery));
-    }
+    searchQuery !== ""
+      ? setProducts(items.search(searchQuery))
+      : setProducts(productList);
   }, [searchQuery]);
 
   const updateWishlist = (product) => {
@@ -60,25 +66,19 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
     setWishlist(updatedWishlist);
     localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
   };
-  const loadProductsList = (page) => {
-    const res = productsService.getList(page);
-    const newPage = page + 1;
-    const newList = productsList.concat(res);
-    const newListVariable = [...newList];
-    setProductsList(newListVariable);
-    setPage(newPage);
-  };
+
   return (
     <div className="product-container">
       {searchQuery !== "" && <h2 className="results-title">Results</h2>}
       <section className="product-grid">
-        {productsList &&
-          productsList.map((productItem, index) => {
+        {products &&
+          products.map((productItem, index) => {
             return (
               <div className="product-card" key={index}>
+                {console.log(productItem.id)}
                 <img
                   src={productItem.image}
-                  alt={productItem.product + " image"}
+                  alt={productItem.name + " image"}
                   className="product-image product-link"
                   onClick={() => {
                     onProductClick(productItem.id);
@@ -93,7 +93,7 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
                         onProductClick(productItem.id);
                       }}
                     >
-                      {productItem.product}
+                      {productItem.name}
                     </h3>
                     <p>{"Rs. " + productItem.price}</p>
                   </div>
@@ -115,9 +115,24 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
             );
           })}
       </section>
+      {isLoading && (
+        <div className="loading-container">
+          <div className="loading"></div>
+        </div>
+      )}
       {showDialog && !isAuthenticated && (
         <InfoDialog isLoggedIn={false} setShowDialog={setShowDialog} />
       )}
+      <BackToTop
+        showOnScrollUP
+        showAt={500}
+        speed={3000}
+        easing="easeInOutQuint"
+      >
+        <button className="back-to-top-button">
+          <ArrowUpwardIcon />
+        </button>
+      </BackToTop>
     </div>
   );
 };
