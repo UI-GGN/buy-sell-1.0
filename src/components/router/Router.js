@@ -16,9 +16,9 @@ const RootRouter = () => {
     useAuth();
   const [searchQuery, setSearchQuery] = useState("");
 
-  function ProtectedRoute({ children, redirectTo }) {
+  const ProtectedRoute = ({ children, redirectTo }) => {
     return isAuthenticated ? children : <Navigate to={redirectTo} />;
-  }
+  };
 
   return (
     <Routes>
@@ -161,8 +161,8 @@ const RootRouter = () => {
 };
 
 RootRouter.propTypes = {
-  children: PropTypes.node.isRequired,
-  redirectTo: PropTypes.string.isRequired,
+  children: PropTypes.node,
+  redirectTo: PropTypes.string,
 };
 
 export default RootRouter;

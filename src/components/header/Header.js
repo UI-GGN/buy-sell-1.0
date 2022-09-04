@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./header.css";
 import Button from "../custom/button/Button";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "../dropdown/Dropdown";
+import Searchbar from "../searchbar/Searchbar";
+import PropTypes from "prop-types";
 import Logo from "../../logo/CBP Marketplace-1.png";
 import SellersPortalLogo from "../../logo/CBP_Sellers_Portal.png";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import Dropdown from "../dropdown/Dropdown";
-import Searchbar from "../searchbar/Searchbar";
-import PropTypes from "prop-types";
 
 const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -24,7 +24,7 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
   const routeHome = () => {
     setShowDropdown(false);
     navigate("/");
-    window.location.pathname === "/" && setSearchQuery("");
+    setSearchQuery("");
   };
 
   const routeLogin = () => {
@@ -161,7 +161,10 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                 <div className="wishlist-icon">
                   <button
                     className="icon-button"
-                    onClick={() => navigate("/my/wishlist")}
+                    onClick={() => {
+                      setShowDropdown(false);
+                      navigate("/my/wishlist");
+                    }}
                   >
                     <FavoriteBorderIcon />
                   </button>
@@ -173,7 +176,10 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                 <div className="cart-icon">
                   <button
                     className="icon-button"
-                    onClick={() => navigate("/my/cart")}
+                    onClick={() => {
+                      setShowDropdown(false);
+                      navigate("/my/cart");
+                    }}
                   >
                     <ShoppingCartOutlinedIcon />
                   </button>
