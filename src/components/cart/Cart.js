@@ -16,7 +16,7 @@ const Cart = () => {
 
   useEffect(() => {
     calculateTotalCost();
-  });
+  }, []);
 
   const removeFromCart = (productId) => {
     let updatedCart = { ...cart };
@@ -25,8 +25,8 @@ const Cart = () => {
     delete updatedCart[username]["count"][productId];
 
     setCart(updatedCart);
-    calculateTotalCost();
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    calculateTotalCost();
     toast.info("Item has been removed from the Cart");
   };
 
@@ -47,7 +47,8 @@ const Cart = () => {
   const calculateTotalCost = () => {
     let totalCost = 0;
     for (var item of products) {
-      totalCost += parseInt(item.price) * cart[username]["count"][item.id];
+      totalCost +=
+        parseInt(item.price) * (cart[username]["count"][item.id] || 0);
     }
     setTotal(totalCost);
   };
@@ -69,10 +70,10 @@ const Cart = () => {
                   <img
                     className="cart-image"
                     src={product.image}
-                    alt={product.product + " image"}
+                    alt={product.name + " image"}
                   ></img>
                   <div>
-                    <h3 className="cart-product-title">{product.product}</h3>
+                    <h3 className="cart-product-title">{product.name}</h3>
                     <h5 className="quantity-title">Quantity</h5>
                     <div className="cart-item-quantity-container">
                       <button
