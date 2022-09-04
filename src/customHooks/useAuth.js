@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { isLoggedIn, login, register, logout } from "../services/authService";
 
 export default () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(isLoggedIn());
 
   useEffect(() => {
     setIsAuthenticated(isLoggedIn());
