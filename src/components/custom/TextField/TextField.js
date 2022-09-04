@@ -33,7 +33,9 @@ const TextField = ({ name, value, label, type, handleChange, isValid }) => {
       <div>
         <input
           id={name}
-          type={type !== "password" ? type || "text" : !showPassword && type}
+          type={
+            type !== "password" ? type || "text" : !showPassword ? type : "text"
+          }
           name={name}
           autoComplete={name}
           placeholder={label}
@@ -80,7 +82,7 @@ TextField.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
   isValid: PropTypes.object.isRequired,
 };
