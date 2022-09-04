@@ -9,6 +9,7 @@
     "@mui/material": "^5.8.7",
     "@mui/styled-engine": "^5.8.7",
     "@mui/styles": "^5.8.7",
+    "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/react-hooks": "^8.0.1",
@@ -18,11 +19,15 @@
     "formik": "^2.2.9",
     "jest-when": "^3.5.1",
     "js-search": "^2.0.0",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-back-to-top-button": "^0.0.14",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.7",
+    "redux": "^4.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
