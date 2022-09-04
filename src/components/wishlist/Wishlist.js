@@ -53,9 +53,9 @@ const Wishlist = () => {
                 <img
                   className="wishlist-image"
                   src={product.image}
-                  alt={product.product + "image"}
+                  alt={product.name + "image"}
                 ></img>
-                <h4>{product.product}</h4>
+                <h4>{product.name}</h4>
                 <p>{"Rs. " + product.price}</p>
               </div>
               <div className="wishlist-button-section">
