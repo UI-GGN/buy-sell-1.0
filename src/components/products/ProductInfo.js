@@ -23,20 +23,25 @@ const ProductInfo = () => {
     toast.info("Item has been added to the Cart");
   };
 
-  const product = productList.filter((product) => {
+  const product = Object.values(productList).filter((product) => {
     return product.id === productId;
   })[0];
+  console.log("5");
+  console.log("5");
+  console.log("5");
+  console.log("5");
+  console.log(product);
 
   return (
     <div className="product-info">
-      <div className="image">
+      <div className="image" data-testid="product-image">
         <img
           src={product.image}
           alt={product.product + "image"}
           height="400"
         ></img>
       </div>
-      <div className="info">
+      <div className="info" data-testid="product-info">
         <h1>{product.product}</h1>
 
         <hr />
