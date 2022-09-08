@@ -1,25 +1,29 @@
-const products = JSON.parse(localStorage.getItem("products"));
-const cart = JSON.parse(localStorage.getItem("cart"));
-const wishlist = JSON.parse(localStorage.getItem("wishlist"));
-const username = JSON.parse(localStorage.getItem("username"));
+const username = localStorage.getItem("username");
 
-export const loadProducts = () => {
+export const loadProducts = (products) => {
   return {
     type: "LOAD_PRODUCTS",
     payload: products,
   };
 };
 
-export const loadCart = () => {
+export const loadCart = (cart) => {
   return {
     type: "LOAD_CART",
     payload: cart[username],
   };
 };
 
-export const loadWishlist = () => {
+export const loadWishlist = (wishlist) => {
   return {
     type: "LOAD_WISHLIST",
     payload: wishlist[username],
+  };
+};
+
+export const updateCartTotal = (total) => {
+  return {
+    type: "UPDATE_CART_TOTAL",
+    payload: total,
   };
 };

@@ -1,91 +1,67 @@
-import React, { useState, useEffect } from "react";
-import productList from "../products/ProductList";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import {
+  updateItemQuantity,
+  removeFromCart,
+  calculateTotalCost,
+} from "../../services/cartService";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 import "./cart.css";
 
 const Cart = () => {
-  const username = localStorage.getItem("username");
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
-  const [total, setTotal] = useState(0);
+  const cart = useSelector((state) => state.cartReducer.cart);
+  const cartTotal = useSelector((state) => state.cartReducer.cartTotal);
+  const productList = useSelector(
+    (state) => state.productReducer.products.byId
+  );
+  let products = [];
 
-  const products = productList.filter((product) => {
-    return cart[username]["items"].includes(product.id);
-  });
+  products = Object.keys(productList)
+    .filter((key) => Object.keys(cart).includes(key))
+    .reduce((obj, key) => {
+      obj[key] = productList[key];
+      return obj;
+    }, {});
 
   useEffect(() => {
     calculateTotalCost();
   }, []);
 
-  const removeFromCart = (productId) => {
-    let updatedCart = { ...cart };
-    const index = updatedCart[username]["items"].indexOf(productId);
-    updatedCart[username]["items"].splice(index, 1);
-    delete updatedCart[username]["count"][productId];
-
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    calculateTotalCost();
-    toast.info("Item has been removed from the Cart");
-  };
-
-  const updateItemQuantity = (productId, operation) => {
-    let updatedCart = { ...cart };
-    updatedCart[username]["count"][productId] === 1 &&
-      operation === "decrement" &&
-      removeFromCart(productId);
-    operation === "increment"
-      ? (updatedCart[username]["count"][productId] += 1)
-      : (updatedCart[username]["count"][productId] -= 1);
-
-    setCart(updatedCart);
-    calculateTotalCost();
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  const calculateTotalCost = () => {
-    let totalCost = 0;
-    for (var item of products) {
-      totalCost +=
-        parseInt(item.price) * (cart[username]["count"][item.id] || 0);
-    }
-    setTotal(totalCost);
-  };
-
   return (
     <section className="stack">
       <h2>Your Cart</h2>
-      {products.length === 0 ? (
+      {Object.entries(products).length === 0 ? (
         <div className="empty-container">
           <ProductionQuantityLimitsIcon className="empty-icon" />
           <p>Your cart is empty. Add items to checkout.</p>
         </div>
       ) : (
         <div>
-          {products.map((product, index) => {
+          {Object.entries(products).map((product, index) => {
             return (
               <div className="cart-item-container" key={index}>
                 <div className="cart-item" key={index}>
                   <img
                     className="cart-image"
-                    src={product.image}
-                    alt={product.name + " image"}
+                    src={product[1].image}
+                    alt={product[1].name + " image"}
                   ></img>
                   <div>
-                    <h3 className="cart-product-title">{product.name}</h3>
+                    <h3 className="cart-product-title">{product[1].name}</h3>
                     <h5 className="quantity-title">Quantity</h5>
                     <div className="cart-item-quantity-container">
                       <button
                         className="button cart-qty-button"
                         onClick={() =>
-                          updateItemQuantity(product.id, "decrement")
+                          updateItemQuantity(product[1].id, "decrement")
                         }
                       >
                         -
                       </button>
                       <p className="cart-item-quantity">
-                        {cart[username]["count"][product.id]}
+                        {cart[product[1].id]}
                       </p>
                       {/* <input
                                                 className="cart-item-quantity"
@@ -95,7 +71,7 @@ const Cart = () => {
                       <button
                         className="button cart-qty-button"
                         onClick={() =>
-                          updateItemQuantity(product.id, "increment")
+                          updateItemQuantity(product[1].id, "increment")
                         }
                       >
                         +
@@ -103,18 +79,20 @@ const Cart = () => {
                     </div>
                     <button
                       className=" button cart-remove-button"
-                      onClick={() => removeFromCart(product.id)}
+                      onClick={() => removeFromCart(product[1].id)}
                     >
                       Remove
                     </button>
                   </div>
-                  <h3 className="cart-item-price">{"Rs. " + product.price}</h3>
+                  <h3 className="cart-item-price">
+                    {"Rs. " + product[1].price}
+                  </h3>
                 </div>
               </div>
             );
           })}
           <div className="total-cost-container">
-            <h3>Total Cost : Rs. {total}</h3>
+            <h3>Total Cost : Rs. {cartTotal}</h3>
             <button className="button checkout-button">
               Proceed to Checkout
             </button>

@@ -10,19 +10,17 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useNavigate } from "react-router-dom";
+import { updateWishlist } from "../../services/wishlistService";
+import { ToastContainer } from "react-toastify";
 import PropTypes from "prop-types";
 
 const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
   const [showDialog, setShowDialog] = useState(false);
   const [products, setProducts] = useState(
-    useSelector((state) => state.products)
+    useSelector((state) => state.productReducer.products.byId)
   );
-  console.log(products);
   const [isLoading, setIsLoading] = useInfiniteScroll(loadMoreProducts);
-  const username = localStorage.getItem("username") || "";
-  const [wishlist, setWishlist] = useState(
-    JSON.parse(localStorage.getItem("wishlist")) || ""
-  );
+  const wishlist = useSelector((state) => state.wishlistReducer.wishlist);
   let params = new URL(document.location).searchParams;
   const navigate = useNavigate();
   const onProductClick = (productId) => {
@@ -38,7 +36,7 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
 
   function loadMoreProducts() {
     setTimeout(() => {
-      setProducts((prevState) => [...prevState, ...products]);
+      setProducts((prevState) => [...prevState, ...productList]);
       setIsLoading(false);
     }, 1000);
   }
@@ -53,35 +51,20 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
       : setProducts(productList);
   }, [searchQuery]);
 
-  const updateWishlist = (product) => {
-    let updatedWishlist = { ...wishlist };
-    let addProduct = true;
-    updatedWishlist[username].forEach((item, index) => {
-      if (item === product) {
-        updatedWishlist[username].splice(index, 1);
-        addProduct = false;
-      }
-    });
-    if (addProduct) updatedWishlist[username].push(product);
-    setWishlist(updatedWishlist);
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-  };
-
   return (
     <div className="product-container">
       {searchQuery !== "" && <h2 className="results-title">Results</h2>}
       <section className="product-grid">
         {products &&
-          products.map((productItem, index) => {
+          Object.entries(products).map((productItem, index) => {
             return (
               <div className="product-card" key={index}>
-                {console.log(productItem.id)}
                 <img
-                  src={productItem.image}
-                  alt={productItem.name + " image"}
+                  src={productItem[1].image}
+                  alt={productItem[1].name + " image"}
                   className="product-image product-link"
                   onClick={() => {
-                    onProductClick(productItem.id);
+                    onProductClick(productItem[1].id);
                   }}
                 ></img>
                 <hr />
@@ -90,24 +73,23 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
                     <h3
                       className="product-link"
                       onClick={() => {
-                        onProductClick(productItem.id);
+                        onProductClick(productItem[1].id);
                       }}
                     >
-                      {productItem.name}
+                      {productItem[1].name}
                     </h3>
-                    <p>{"Rs. " + productItem.price}</p>
+                    <p>{"Rs. " + productItem[1].price}</p>
                   </div>
-                  {isAuthenticated &&
-                  wishlist[username].includes(productItem.id) ? (
+                  {isAuthenticated && wishlist.includes(productItem[1].id) ? (
                     <FavoriteIcon
                       className="fav-icon"
                       style={{ color: "red" }}
-                      onClick={() => updateWishlist(productItem.id)}
+                      onClick={() => updateWishlist(productItem[1].id)}
                     />
                   ) : (
                     <FavoriteBorderIcon
                       className="fav-icon"
-                      onClick={() => updateWishlist(productItem.id)}
+                      onClick={() => updateWishlist(productItem[1].id)}
                     />
                   )}
                 </div>
@@ -133,6 +115,18 @@ const Products = ({ isAuthenticated, searchQuery, setSearchQuery }) => {
           <ArrowUpwardIcon />
         </button>
       </BackToTop>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        theme="dark"
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

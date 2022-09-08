@@ -1,73 +1,57 @@
-import React, { useState } from "react";
-import productList from "../products/ProductList";
+import React from "react";
 import HeartBrokenIcon from "@mui/icons-material/HeartBroken";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { addToCart } from "../../services/cartService";
+import { removeFromWislist } from "../../services/wishlistService";
 import "./wishlist.css";
+import { useSelector } from "react-redux";
 
 const Wishlist = () => {
-  const username = localStorage.getItem("username");
-  const [wishlist, setWishlist] = useState(
-    JSON.parse(localStorage.getItem("wishlist")) || ""
+  const wishlist = useSelector((state) => state.wishlistReducer.wishlist);
+  const productList = useSelector(
+    (state) => state.productReducer.products.byId
   );
-  const cart = JSON.parse(localStorage.getItem("cart"));
+  let products = [];
 
-  const products = productList.filter((product) => {
-    return wishlist[username].includes(product.id);
-  });
-
-  const removeFromWislist = (productId) => {
-    let updatedWishlist = { ...wishlist };
-    let index = updatedWishlist[username].indexOf(productId);
-    if (index > -1) updatedWishlist[username].splice(index, 1);
-    setWishlist(updatedWishlist);
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-    toast.info("Item has been removed from the Wishlist");
-  };
-
-  const addToCart = (productId) => {
-    if (cart[username]["items"].includes(productId)) {
-      cart[username]["count"][productId] += 1;
-    } else {
-      cart[username]["items"].push(productId);
-      cart[username]["count"][productId] = 1;
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast.info("Item has been added to the Cart");
-  };
+  products = Object.keys(productList)
+    .filter((key) => wishlist.includes(key))
+    .reduce((obj, key) => {
+      obj[key] = productList[key];
+      return obj;
+    }, {});
 
   return (
     <section className="stack">
       <h2>Your Wishlist</h2>
-      {products.length === 0 ? (
+      {Object.entries(products).length === 0 ? (
         <div className="empty-container">
           <HeartBrokenIcon className="empty-icon" />
           <p>Your wishlist is empty. Start adding items.</p>
         </div>
       ) : (
-        products.map((product, index) => {
+        Object.entries(products).map((product, index) => {
           return (
             <div className="wishlist-item-container" key={index}>
               <div className="wishlist-item" key={index}>
                 <img
                   className="wishlist-image"
-                  src={product.image}
-                  alt={product.name + "image"}
+                  src={product[1].image}
+                  alt={product[1].name + "image"}
                 ></img>
-                <h4>{product.name}</h4>
-                <p>{"Rs. " + product.price}</p>
+                <h4>{product[1].name}</h4>
+                <p>{"Rs. " + product[1].price}</p>
               </div>
               <div className="wishlist-button-section">
                 <button
                   className="button wishlist-item-button"
-                  onClick={() => addToCart(product.id)}
+                  onClick={() => addToCart(product[1].id)}
                 >
                   Add to Cart
                 </button>
                 <button
                   className="button wishlist-item-button remove-button"
-                  onClick={() => removeFromWislist(product.id)}
+                  onClick={() => removeFromWislist(product[1].id)}
                 >
                   Remove
                 </button>

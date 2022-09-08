@@ -3,8 +3,6 @@ const initialState = {
     byId: {},
     allIds: [],
   },
-  wishlist: [],
-  cart: {},
 };
 
 const productReducer = (state = initialState, action) => {
@@ -16,6 +14,7 @@ const productReducer = (state = initialState, action) => {
         s.products.allIds.push(item.id);
         entry[item.id] = {
           name: item.name,
+          id: item.id,
           image: item.image,
           price: item.price,
           description: item.description,
@@ -24,21 +23,6 @@ const productReducer = (state = initialState, action) => {
       }
       s.products.byId = entry;
       s.products.allIds = [...new Set(s.products.allIds)];
-      return s;
-    }
-    case "LOAD_CART": {
-      let s = JSON.parse(JSON.stringify(state));
-      for (const id of action.payload.items) {
-        s.cart[id] = action.payload.count.id;
-      }
-      return s;
-    }
-    case "LOAD_WISHLIST": {
-      let s = JSON.parse(JSON.stringify(state));
-      for (const id of action.payload) {
-        s.wishlist.push(id);
-      }
-      s.wishlist = [...new Set(s.wishlist)];
       return s;
     }
 

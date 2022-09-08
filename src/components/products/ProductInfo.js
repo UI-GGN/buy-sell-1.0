@@ -32,12 +32,12 @@ const ProductInfo = () => {
       <div className="image">
         <img
           src={product.image}
-          alt={product.product + "image"}
+          alt={product.name + "image"}
           height="400"
         ></img>
       </div>
       <div className="info">
-        <h1>{product.product}</h1>
+        <h1>{product.name}</h1>
 
         <hr />
         <h2>Rs. {product.price}</h2>
