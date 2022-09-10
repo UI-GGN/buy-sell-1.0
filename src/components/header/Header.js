@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./header.css";
 import Button from "../custom/button/Button";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Dropdown from "../dropdown/Dropdown";
 import Searchbar from "../searchbar/Searchbar";
 import PropTypes from "prop-types";
@@ -13,6 +14,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const cart = useSelector((state) => state.cartReducer.cart);
   const iconLocationArray = [
     "/login",
     "/register",
@@ -27,19 +29,9 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
     setSearchQuery("");
   };
 
-  const routeLogin = () => {
+  const routeTo = (path) => {
     setShowDropdown(false);
-    navigate("/login");
-  };
-
-  const routeRegister = () => {
-    setShowDropdown(false);
-    navigate("/register");
-  };
-
-  const routeSeller = () => {
-    setShowDropdown(false);
-    navigate("/seller");
+    navigate(path);
   };
 
   const logout = () => {
@@ -52,10 +44,13 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
       <div>
         <h5 className="dropdown-welcome">Welcome to CBP Marketplace</h5>
         <div className="button-section">
-          <Button className="header-button" onClick={routeLogin}>
+          <Button className="header-button" onClick={() => routeTo("/login")}>
             Login
           </Button>
-          <Button className="header-button" onClick={routeRegister}>
+          <Button
+            className="header-button"
+            onClick={() => routeTo("/register")}
+          >
             Sign Up
           </Button>
         </div>
@@ -75,13 +70,13 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
           <p>Orders</p>
         </div>
         <div>
-          <p onClick={() => navigate("/my/wishlist")}>Wishlist</p>
+          <p onClick={() => routeTo("/my/wishlist")}>Wishlist</p>
         </div>
         <div>
           <p>My Profile</p>
         </div>
         <div>
-          <p>Saved Addresses</p>
+          <p onClick={() => routeTo("/my/addresses")}>Saved Addresses</p>
         </div>
       </div>
     );
@@ -136,7 +131,7 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                   >
                     {isAuthenticated ? username() : buttonSection()}
                     <hr />
-                    <div onClick={() => routeSeller()}>
+                    <div onClick={() => routeTo("/seller")}>
                       <p>Seller Portal</p>
                     </div>
                     <div>
@@ -183,6 +178,7 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                   >
                     <ShoppingCartOutlinedIcon />
                   </button>
+                  <div className="cart-length">{Object.keys(cart).length}</div>
                   <p className="icon-title">Cart</p>
                   {window.location.pathname === "/my/cart" && (
                     <div className="indicator"></div>
