@@ -95,12 +95,14 @@ div.text-field.error input {
 
 .field-label {
   position: absolute;
-  font-size: 14px;
-  color: #3c69ef;
+  font-size: 13px !important;
+  font-weight: bold;
   background-color: transparent !important;
   z-index: 1000;
   padding: 0 !important;
-  margin: 0;
+  margin: 0 !important;
+
+  /* color: #3c69ef; */
 }
 
 .error-container {

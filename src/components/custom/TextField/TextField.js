@@ -3,7 +3,15 @@ import PropTypes from "prop-types";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import "./textField.css";
 
-const TextField = ({ name, value, label, type, handleChange, isValid }) => {
+const TextField = ({
+  name,
+  value,
+  label,
+  type,
+  handleChange,
+  isValid,
+  ...props
+}) => {
   const [focused, setFocused] = useState(false);
   const [showLabel, setShowLabel] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +48,8 @@ const TextField = ({ name, value, label, type, handleChange, isValid }) => {
           autoComplete={name}
           placeholder={label}
           value={value}
-          required
+          required={props.required}
+          maxLength={props.maxLength && props.maxLength}
           onChange={(e) => {
             handleChange(e);
           }}
@@ -71,9 +80,13 @@ const TextField = ({ name, value, label, type, handleChange, isValid }) => {
           <div></div>
         </div>
       </div>
-      <div className="error-container">
-        {showError && <p className="error-message">{isValid.errMsg}</p>}
-      </div>
+      {props.validate ? (
+        <div className="error-container">
+          {showError && <p className="error-message">{isValid.errMsg}</p>}
+        </div>
+      ) : (
+        <div style={{ height: "10px", border: "none" }}></div>
+      )}
     </div>
   );
 };
@@ -83,8 +96,11 @@ TextField.propTypes = {
   value: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string,
+  required: PropTypes.bool,
   handleChange: PropTypes.func.isRequired,
-  isValid: PropTypes.object.isRequired,
+  validate: PropTypes.bool,
+  maxLength: PropTypes.node,
+  isValid: PropTypes.object,
 };
 
 export default TextField;

@@ -87,6 +87,8 @@ const RegisterForm = ({ onRegister, authMode }) => {
           label="Name"
           name="name"
           value={fieldValues.name}
+          required={true}
+          validate={true}
           isValid={isValid.name}
           handleChange={handleFieldChange}
         />
@@ -94,6 +96,8 @@ const RegisterForm = ({ onRegister, authMode }) => {
           label="Username"
           name="username"
           value={fieldValues.username}
+          required={true}
+          validate={true}
           isValid={isValid.username}
           handleChange={handleFieldChange}
         />
@@ -101,6 +105,8 @@ const RegisterForm = ({ onRegister, authMode }) => {
           label="Email"
           name="email"
           value={fieldValues.email}
+          required={true}
+          validate={true}
           isValid={isValid.email}
           handleChange={handleFieldChange}
         />
@@ -109,6 +115,8 @@ const RegisterForm = ({ onRegister, authMode }) => {
           name="phone"
           type="tel"
           value={fieldValues.phone}
+          required={true}
+          validate={true}
           isValid={isValid.phone}
           handleChange={handleFieldChange}
         />
@@ -117,6 +125,8 @@ const RegisterForm = ({ onRegister, authMode }) => {
           name="password"
           type="password"
           value={fieldValues.password}
+          required={true}
+          validate={true}
           isValid={isValid.password}
           handleChange={handleFieldChange}
         />
@@ -125,6 +135,8 @@ const RegisterForm = ({ onRegister, authMode }) => {
           name="confirmPassword"
           type="password"
           value={fieldValues.confirmPassword}
+          required={true}
+          validate={true}
           isValid={isValid.confirmPassword}
           handleChange={handleFieldChange}
         />

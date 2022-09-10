@@ -73,6 +73,8 @@ const LoginForm = ({ onLogin, authMode }) => {
             label="Username"
             name="username"
             value={fieldValues.username}
+            validate={true}
+            required={true}
             isValid={isValid.username}
             handleChange={handleFieldChange}
           />
@@ -81,6 +83,8 @@ const LoginForm = ({ onLogin, authMode }) => {
             name="password"
             type="password"
             value={fieldValues.password}
+            required={true}
+            validate={true}
             isValid={isValid.password}
             handleChange={handleFieldChange}
           />
