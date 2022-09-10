@@ -1,0 +1,50 @@
+.add-address-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-address-button {
+  text-transform: none;
+}
+
+.individual-address-container {
+  display: flex;
+  justify-content: space-between;
+  margin-block: 30px;
+  padding: 25px 40px;
+  border: 0.1px solid rgb(40 37 37);
+  border-radius: 4px;
+}
+
+.individual-address-container p,
+.individual-address-container h4 {
+  margin-block: 3px;
+  font-family: "Source Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 17px;
+}
+
+.address-ph {
+  display: flex;
+  flex-direction: row;
+  column-gap: 3px;
+  align-items: center;
+}
+
+.address-actions-button-container {
+  display: flex;
+  column-gap: 15px;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.set-as-default-button {
+  font-family: "Source Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  margin-block-start: 10px;
+  color: black;
+
+  /* color: rgb(23, 89, 164); */
+}

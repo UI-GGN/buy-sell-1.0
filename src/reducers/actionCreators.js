@@ -27,3 +27,10 @@ export const updateCartTotal = (total) => {
     payload: total,
   };
 };
+
+export const loadAddresses = (addresses) => {
+  return {
+    type: "LOAD_ADDRESSES",
+    payload: addresses[username],
+  };
+};
