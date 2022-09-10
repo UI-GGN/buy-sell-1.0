@@ -1,3 +1,5 @@
+import productList from "../components/products/ProductList";
+
 export const Database = {
   Buyers: [
     {
@@ -21,10 +23,27 @@ export const Database = {
 
 export const Wishlist = {
   "buyer-1": [],
-  "seller-1": [],
 };
 
 export const Cart = {
   "buyer-1": { items: [], count: {} },
-  "seller-1": { items: [], count: {} },
+};
+
+export const Addresses = {
+  "buyer-1": [],
+};
+
+export const initializeDatabase = () => {
+  localStorage.getItem("database") === null &&
+    localStorage.setItem("database", JSON.stringify(Database));
+  localStorage.getItem("wishlist") === null &&
+    localStorage.setItem("wishlist", JSON.stringify(Wishlist));
+  localStorage.getItem("cart") === null &&
+    localStorage.setItem("cart", JSON.stringify(Cart));
+  localStorage.getItem("products") === null &&
+    localStorage.setItem("products", JSON.stringify(productList));
+  localStorage.getItem("addresses") === null &&
+    localStorage.setItem("addresses", JSON.stringify(Addresses));
+  localStorage.getItem("default_address") === null &&
+    localStorage.setItem("default_address", "");
 };
