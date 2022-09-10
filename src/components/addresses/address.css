@@ -20,8 +20,8 @@
 .individual-address-container p,
 .individual-address-container h4 {
   margin-block: 3px;
-  font-family: "Source Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: "Source Sans";
   font-size: 17px;
 }
 
@@ -40,8 +40,8 @@
 }
 
 .set-as-default-button {
-  font-family: "Source Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: "Source Sans";
   font-size: 15px;
   margin-block-start: 10px;
   color: black;
