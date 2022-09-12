@@ -146,12 +146,17 @@ const RegisterForm = ({ onRegister, authMode }) => {
             checked={checked}
             onChange={(e) => handleCheckChange(e)}
             id="agree-terms"
+            data-testid="agreeTermsCheckbox"
           />
-          <label htmlFor="agree-terms">
+          <label htmlFor="agree-terms" data-testid="agreeTermsLabel">
             I have read and agree to the terms
           </label>
         </div>
-        <Button type="submit" disabled={!enableSubmit}>
+        <Button
+          type="submit"
+          disabled={!enableSubmit}
+          datatestid="submitButton"
+        >
           Sign In
         </Button>
       </form>

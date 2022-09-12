@@ -2,12 +2,13 @@ import React from "react";
 import "./button.css";
 import PropTypes from "prop-types";
 
-const Button = ({ onClick, type, disabled, ...props }) => {
+const Button = ({ onClick, type, disabled, datatestid, ...props }) => {
   return (
     <button
       className={"button " + (props.className && props.className)}
       type={type || "button"}
       disabled={disabled}
+      data-testid={datatestid}
       onClick={
         onClick
           ? (e) => {
@@ -28,6 +29,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   type: PropTypes.string,
   disabled: PropTypes.bool,
+  datatestid: PropTypes.string,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
