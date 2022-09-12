@@ -26,11 +26,6 @@ const ProductInfo = () => {
   const product = Object.values(productList).filter((product) => {
     return product.id === productId;
   })[0];
-  console.log("5");
-  console.log("5");
-  console.log("5");
-  console.log("5");
-  console.log(product);
 
   return (
     <div className="product-info">
