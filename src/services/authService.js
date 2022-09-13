@@ -8,6 +8,7 @@ export const login = (username, password, authMode) => {
         localStorage.setItem("username", username);
         localStorage.setItem("user", user.name);
         localStorage.setItem("mode", authMode);
+        localStorage.setItem("current_order", "{}");
         return true;
       }
     }
@@ -22,6 +23,7 @@ export const register = (details, authMode) => {
   let wishlist = JSON.parse(localStorage.getItem("wishlist"));
   let cart = JSON.parse(localStorage.getItem("cart"));
   let addresses = JSON.parse(localStorage.getItem("addresses"));
+  let orders = JSON.parse(localStorage.getItem("orders"));
   const userArray = database[mode];
   if (userArray.some((user) => user.username === details.username))
     return "Username already exists, try a different one";
@@ -34,11 +36,13 @@ export const register = (details, authMode) => {
   wishlist[userArray.username] = [];
   cart[userArray.username] = { items: [], count: {} };
   addresses[userArray.username] = [];
+  orders[userArray.username] = [];
 
   localStorage.setItem("database", JSON.stringify(database));
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
   localStorage.setItem("cart", JSON.stringify(cart));
   localStorage.setItem("addresses", JSON.stringify(addresses));
+  localStorage.setItem("orders", JSON.stringify(orders));
 
   return true;
 };

@@ -4,11 +4,15 @@ import { toast } from "react-toastify";
 import store from "../store";
 
 const username = localStorage.getItem("username");
-const cart = JSON.parse(localStorage.getItem("cart"));
 const dispatch = store.dispatch;
 
 export const calculateTotalCost = () => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
   let totalCost = 0;
+  if (cart[username]["items"].length === 0) {
+    dispatch(updateCartTotal(0));
+    return;
+  }
   for (var item of productList) {
     cart[username]["items"].includes(item.id) &&
       (totalCost += parseInt(item.price) * cart[username]["count"][item.id]);
@@ -17,6 +21,7 @@ export const calculateTotalCost = () => {
 };
 
 export const addToCart = (productId) => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
   if (cart[username]["items"].includes(productId)) {
     cart[username]["count"][productId] += 1;
   } else {
@@ -31,6 +36,7 @@ export const addToCart = (productId) => {
 };
 
 export const removeFromCart = (productId) => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
   let updatedCart = { ...cart };
   const index = updatedCart[username]["items"].indexOf(productId);
   updatedCart[username]["items"].splice(index, 1);
@@ -43,6 +49,7 @@ export const removeFromCart = (productId) => {
 };
 
 export const updateItemQuantity = (productId, operation) => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
   let updatedCart = { ...cart };
   updatedCart[username]["count"][productId] === 1 &&
     operation === "decrement" &&
@@ -53,5 +60,14 @@ export const updateItemQuantity = (productId, operation) => {
 
   localStorage.setItem("cart", JSON.stringify(updatedCart));
   dispatch(loadCart(updatedCart));
+  calculateTotalCost();
+};
+
+export const clearCart = () => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  let clearedCart = { ...cart };
+  clearedCart[username] = { items: [], count: {} };
+  localStorage.setItem("cart", JSON.stringify(clearedCart));
+  dispatch(loadCart(clearedCart));
   calculateTotalCost();
 };

@@ -1,5 +1,6 @@
 const initialState = {
   addresses: [],
+  selectedAddress: 0,
 };
 
 const addressReducer = (state = initialState, action) => {
@@ -12,6 +13,11 @@ const addressReducer = (state = initialState, action) => {
       }
       return s;
     }
+    case "UPDATE_SELECTED_ADDRESS":
+      return {
+        ...state,
+        selectedAddress: action.payload,
+      };
 
     default:
       return state;

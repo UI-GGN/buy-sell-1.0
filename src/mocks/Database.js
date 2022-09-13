@@ -33,6 +33,10 @@ export const Addresses = {
   "buyer-1": [],
 };
 
+export const Orders = {
+  "buyer-1": [],
+};
+
 export const initializeDatabase = () => {
   localStorage.getItem("database") === null &&
     localStorage.setItem("database", JSON.stringify(Database));
@@ -44,6 +48,8 @@ export const initializeDatabase = () => {
     localStorage.setItem("products", JSON.stringify(productList));
   localStorage.getItem("addresses") === null &&
     localStorage.setItem("addresses", JSON.stringify(Addresses));
+  localStorage.getItem("orders") === null &&
+    localStorage.setItem("orders", JSON.stringify(Orders));
   localStorage.getItem("default_address") === null &&
     localStorage.setItem("default_address", "");
 };

@@ -47,7 +47,6 @@ const RegisterForm = ({ onRegister, authMode }) => {
           ...isValid,
           [name]: { err: true, errMsg: [response] },
         });
-
     if (
       Object.values(updatedFieldValues).every((field) => field !== "") &&
       Object.values(isValid).every((field) => field.err === false)
