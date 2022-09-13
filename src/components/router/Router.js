@@ -11,6 +11,9 @@ import Cart from "../cart/Cart";
 import ProductInfo from "../products/ProductInfo";
 import PropTypes from "prop-types";
 import MyAddresses from "../addresses/MyAddresses";
+import SelectAddress from "../addresses/SelectAddress";
+import SelectPayment from "../payment/SelectPayment";
+import OrderSummary from "../orders/OrderSummaryPage";
 
 const RootRouter = () => {
   const { handleLogin, handleRegister, handleLogout, isAuthenticated } =
@@ -153,6 +156,57 @@ const RootRouter = () => {
               />
               <div className="container">
                 <MyAddresses />
+              </div>
+            </div>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        exact
+        path="/select-address"
+        element={
+          <ProtectedRoute redirectTo={"/"}>
+            <div>
+              <Header
+                isAuthenticated={isAuthenticated}
+                onLogout={handleLogout}
+              />
+              <div className="container">
+                <SelectAddress />
+              </div>
+            </div>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        exact
+        path="/select-payment"
+        element={
+          <ProtectedRoute redirectTo={"/"}>
+            <div>
+              <Header
+                isAuthenticated={isAuthenticated}
+                onLogout={handleLogout}
+              />
+              <div className="container">
+                <SelectPayment />
+              </div>
+            </div>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        exact
+        path="/order-summary"
+        element={
+          <ProtectedRoute redirectTo={"/"}>
+            <div>
+              <Header
+                isAuthenticated={isAuthenticated}
+                onLogout={handleLogout}
+              />
+              <div className="container">
+                <OrderSummary />
               </div>
             </div>
           </ProtectedRoute>
