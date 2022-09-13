@@ -15,6 +15,14 @@ export const addAddress = (address) => {
   toast.info("Address has been added");
 };
 
+export const editAddress = (currentAddress, newAddress) => {
+  const index = addresses[username].indexOf(currentAddress);
+  addresses[username][index] = newAddress;
+  localStorage.setItem("addresses", JSON.stringify(addresses));
+  dispatch(loadAddresses(addresses));
+  toast.info("Address has been updated");
+};
+
 export const deleteAddress = (address) => {
   const index = addresses[username].indexOf(address);
   addresses[username].splice(index, 1);
