@@ -1,6 +1,7 @@
 const initialState = {
   addresses: [],
   selectedAddress: 0,
+  editAddress: false
 };
 
 const addressReducer = (state = initialState, action) => {
@@ -17,6 +18,12 @@ const addressReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedAddress: action.payload,
+      };
+
+    case "UPDATE_EDIT_ADDRESS":
+      return {
+        ...state,
+        editAddress: action.payload,
       };
 
     default:

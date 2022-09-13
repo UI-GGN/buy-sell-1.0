@@ -5,6 +5,8 @@ import "./addAddressDialog.css";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { addAddress, editAddress } from "../../../services/addressService";
+import { useDispatch } from "react-redux";
+import { updateEditAddress } from "../../../reducers/actionCreators";
 
 const AddAddressDialog = ({ setOpenDialog, edit, currentAddress }) => {
   const defaultValues = {
@@ -59,6 +61,7 @@ const AddAddressDialog = ({ setOpenDialog, edit, currentAddress }) => {
   const [fieldValues, setFieldValues] = useState(
     edit ? currentAddress : defaultValues
   );
+  const dispatch = useDispatch();
   const handleFieldChange = (event) => {
     const { name, value } = event.target;
     const updatedFieldValues = { ...fieldValues, [name]: value };
@@ -83,7 +86,11 @@ const AddAddressDialog = ({ setOpenDialog, edit, currentAddress }) => {
   };
 
   return (
-    <Dialog setShowDialog={setOpenDialog}>
+    <Dialog setShowDialog={() => {
+      setOpenDialog();
+      dispatch(updateEditAddress(false));
+      }}
+      >
       <form
         className="add-address-form"
         onSubmit={(e) => {

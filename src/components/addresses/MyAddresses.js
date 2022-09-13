@@ -5,17 +5,20 @@ import { ToastContainer } from "react-toastify";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import "./address.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateEditAddress } from "../../reducers/actionCreators";
 
 const MyAddresses = () => {
   const addresses = useSelector((state) => state.addressReducer.addresses);
+  const editAddress = useSelector((state) => state.addressReducer.editAddress);
   const [openDialog, setOpenDialog] = useState(false);
   const [currentAddress, setCurrentAddress] = useState();
-  const [editAddress, setEditAddress] = useState(false);
+  //const [editAddress, setEditAddress] = useState(false);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setEditAddress(false);
-  });
+  // useEffect(() => {
+  //   setEditAddress(false);
+  // }, []);
 
   return (
     <section className="stack">
@@ -57,7 +60,7 @@ const MyAddresses = () => {
                       className="icon-button"
                       onClick={() => {
                         setCurrentAddress(address);
-                        setEditAddress(true);
+                        dispatch(updateEditAddress(true));
                         setOpenDialog(true);
                         //setTimeout(() => setCurrentAddress(""), 2000);
                       }}
@@ -78,12 +81,14 @@ const MyAddresses = () => {
           })}
         </div>
       )}
-      {openDialog && (
+      {openDialog && ( 
         <AddAddressDialog
           setOpenDialog={setOpenDialog}
           edit={editAddress}
           currentAddress={currentAddress}
         />
+
+        
       )}
       <ToastContainer
         position="bottom-center"

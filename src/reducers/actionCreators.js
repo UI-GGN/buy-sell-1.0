@@ -42,6 +42,13 @@ export const updateSelectedAddress = (id) => {
   };
 };
 
+export const updateEditAddress = (value) => {
+  return {
+    type: "UPDATE_EDIT_ADDRESS",
+    payload: value,
+  };
+};
+
 export const updateSavedCards = (card) => {
   return {
     type: "UPDATE_SELECTED_ADDRESS",

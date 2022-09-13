@@ -1,31 +1,26 @@
 import React from "react";
 import productList from "./ProductList";
 import "./productInfo.css";
-import { useSearchParams } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { addToCart } from "../../services/cartService";
+import { updateCurrentOrder } from "../../services/orderService";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProductInfo = () => {
   const [searchParams] = useSearchParams();
-  const username = localStorage.getItem("username");
-  const cart = JSON.parse(localStorage.getItem("cart"));
   const productId = searchParams.get("id");
-
-  const addToCart = (productId) => {
-    if (cart[username]["items"].includes(productId)) {
-      cart[username]["count"][productId] += 1;
-    } else {
-      cart[username]["items"].push(productId);
-      cart[username]["count"][productId] = 1;
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast.info("Item has been added to the Cart");
-  };
+  const navigate = useNavigate();
 
   const product = productList.filter((product) => {
     return product.id === productId;
   })[0];
+
+  const proceedToCheckout = () => {
+    updateCurrentOrder("items", {[product.id]:1});
+    updateCurrentOrder("cost", product.price);
+    navigate("/select-address");
+  };
 
   return (
     <div className="product-info">
@@ -104,7 +99,10 @@ const ProductInfo = () => {
           >
             Add to Cart
           </button>
-          <button className="button product-page-button buy-now-button">
+          <button 
+          className="button product-page-button buy-now-button"
+          onClick={() => proceedToCheckout()}
+          >
             Buy Now
           </button>
         </div>
