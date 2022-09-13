@@ -4,9 +4,9 @@ import Dialog from "../Dialog";
 import "./addAddressDialog.css";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
-import { addAddress } from "../../../services/addressService";
+import { addAddress, editAddress } from "../../../services/addressService";
 
-const AddAddressDialog = ({ setOpenDialog, editAddress, currentAddress }) => {
+const AddAddressDialog = ({ setOpenDialog, edit, currentAddress }) => {
   const defaultValues = {
     name: "",
     phone: "",
@@ -57,7 +57,7 @@ const AddAddressDialog = ({ setOpenDialog, editAddress, currentAddress }) => {
     "Puducherry",
   ];
   const [fieldValues, setFieldValues] = useState(
-    editAddress ? currentAddress : defaultValues
+    edit ? currentAddress : defaultValues
   );
   const handleFieldChange = (event) => {
     const { name, value } = event.target;
@@ -78,7 +78,7 @@ const AddAddressDialog = ({ setOpenDialog, editAddress, currentAddress }) => {
       toast.error("Please enter a valid pincode");
       return;
     }
-    addAddress(address);
+    edit ? editAddress(currentAddress, address) : addAddress(address);
     setOpenDialog(false);
   };
 
@@ -191,7 +191,7 @@ const AddAddressDialog = ({ setOpenDialog, editAddress, currentAddress }) => {
 AddAddressDialog.propTypes = {
   setOpenDialog: PropTypes.func.isRequired,
   currentAddress: PropTypes.object,
-  editAddress: PropTypes.bool.isRequired,
+  edit: PropTypes.bool.isRequired,
 };
 
 export default AddAddressDialog;

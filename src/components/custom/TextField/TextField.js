@@ -50,6 +50,7 @@ const TextField = ({
           value={value}
           required={props.required}
           maxLength={props.maxLength && props.maxLength}
+          style={props.style}
           onChange={(e) => {
             handleChange(e);
           }}
@@ -100,6 +101,7 @@ TextField.propTypes = {
   handleChange: PropTypes.func.isRequired,
   validate: PropTypes.bool,
   maxLength: PropTypes.node,
+  style: PropTypes.object,
   isValid: PropTypes.object,
 };
 

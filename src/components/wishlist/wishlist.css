@@ -15,6 +15,7 @@
   padding: 25px 40px;
   border: 0.1px solid rgb(40 37 37);
   border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 25%) 0 0.5px 1px 0;
 }
 
 .wishlist-image {
@@ -54,6 +55,7 @@
 
 .empty-container p {
   margin-block: 5px;
+  font-size: 17px;
 }
 
 .empty-icon {

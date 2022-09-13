@@ -4,6 +4,7 @@
   margin-block: 30px;
   padding: 25px 40px;
   border: 0.1px solid rgb(40 37 37);
+  box-shadow: rgb(0 0 0 / 25%) 0 0.5px 1px 0;
   border-radius: 4px;
 }
 
@@ -59,7 +60,7 @@
   margin-inline-end: 5px;
 }
 
-.checkout-button {
+.proceed-button {
   width: fit-content;
   text-transform: none;
 }
@@ -75,4 +76,12 @@
   padding: 5px 10px;
   margin-block: 5px;
   background-color: rgb(234 91 91);
+}
+
+.clear-cart-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }

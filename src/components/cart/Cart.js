@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   updateItemQuantity,
   removeFromCart,
   calculateTotalCost,
+  clearCart,
 } from "../../services/cartService";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 import "./cart.css";
+import { updateClearCart } from "../../reducers/actionCreators";
+import { updateCurrentOrder } from "../../services/orderService";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cartReducer.cart);
@@ -16,18 +20,26 @@ const Cart = () => {
   const productList = useSelector(
     (state) => state.productReducer.products.byId
   );
-  let products = [];
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  products = Object.keys(productList)
+  useEffect(() => {
+    calculateTotalCost();
+  }, []);
+
+  let products = Object.keys(productList)
     .filter((key) => Object.keys(cart).includes(key))
     .reduce((obj, key) => {
       obj[key] = productList[key];
       return obj;
     }, {});
 
-  useEffect(() => {
-    calculateTotalCost();
-  }, []);
+  const proceedToCheckout = () => {
+    updateCurrentOrder("items", cart);
+    updateCurrentOrder("cost", cartTotal);
+    dispatch(updateClearCart(true));
+    navigate("/select-address");
+  };
 
   return (
     <section className="stack">
@@ -91,9 +103,18 @@ const Cart = () => {
               </div>
             );
           })}
+          <button
+            className="button cart-remove-button"
+            onClick={() => clearCart()}
+          >
+            Clear cart
+          </button>
           <div className="total-cost-container">
             <h3>Total Cost : Rs. {cartTotal}</h3>
-            <button className="button checkout-button">
+            <button
+              className="button proceed-button"
+              onClick={() => proceedToCheckout()}
+            >
               Proceed to Checkout
             </button>
           </div>

@@ -18,14 +18,16 @@ const Dialog = ({ setShowDialog, ...props }) => {
           className="dialog"
         >
           <div className="close-container">
-            <button
-              className="dialog-close"
-              onClick={() => {
-                setShowDialog(false);
-              }}
-            >
-              X
-            </button>
+            {setShowDialog !== undefined && (
+              <button
+                className="dialog-close"
+                onClick={() => {
+                  setShowDialog(false);
+                }}
+              >
+                X
+              </button>
+            )}
           </div>
           {props.children}
         </div>
@@ -35,7 +37,7 @@ const Dialog = ({ setShowDialog, ...props }) => {
 };
 
 Dialog.propTypes = {
-  setShowDialog: PropTypes.func.isRequired,
+  setShowDialog: PropTypes.func,
   children: PropTypes.node.isRequired,
 };
 
