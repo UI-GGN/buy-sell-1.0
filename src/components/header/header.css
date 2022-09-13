@@ -97,8 +97,13 @@
   height: 0;
   width: 40px;
   border: 2px solid black;
-  position: relative;
-  top: 16px;
+  position: absolute;
+  top: 58px;
+}
+
+.profile-icon-indicator {
+  /* right: -10px; */
+  left: 13px;
 }
 
 .dropdown-welcome {
@@ -144,7 +149,7 @@
 
 .cart-length {
   position: absolute;
-  bottom: 36px;
+  bottom: 37px;
   right: 17px;
   width: 18px;
   background-color: black;
@@ -153,4 +158,5 @@
   text-align: center;
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: "Source Sans";
+  font-weight: bold;
 }

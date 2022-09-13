@@ -15,6 +15,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const cart = useSelector((state) => state.cartReducer.cart);
+  let cartLength = Object.keys(cart).length;
   const iconLocationArray = [
     "/login",
     "/register",
@@ -123,10 +124,10 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
               <p className="icon-title">Profile</p>
               {showDropdown && (
                 <div style={{ height: 0 }}>
-                  <div className="indicator"></div>
+                  <div className="indicator profile-icon-indicator"></div>
                   <Dropdown
                     style={
-                      isAuthenticated ? { right: "80px" } : { right: "0px" }
+                      isAuthenticated ? { right: "60px" } : { right: "0px" }
                     }
                   >
                     {isAuthenticated ? username() : buttonSection()}
@@ -178,7 +179,9 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                   >
                     <ShoppingCartOutlinedIcon />
                   </button>
-                  <div className="cart-length">{Object.keys(cart).length}</div>
+                  {cartLength > 0 && (
+                    <div className="cart-length">{cartLength}</div>
+                  )}
                   <p className="icon-title">Cart</p>
                   {window.location.pathname === "/my/cart" && (
                     <div className="indicator"></div>
