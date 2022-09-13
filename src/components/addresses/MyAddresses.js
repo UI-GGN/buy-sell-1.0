@@ -15,7 +15,7 @@ const MyAddresses = () => {
 
   useEffect(() => {
     setEditAddress(false);
-  }, []);
+  });
 
   return (
     <section className="stack">
@@ -59,7 +59,7 @@ const MyAddresses = () => {
                         setCurrentAddress(address);
                         setEditAddress(true);
                         setOpenDialog(true);
-                        setTimeout(() => setEditAddress(false), 2000);
+                        //setTimeout(() => setCurrentAddress(""), 2000);
                       }}
                     >
                       <EditIcon />

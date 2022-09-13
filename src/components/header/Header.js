@@ -27,7 +27,7 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
   const routeHome = () => {
     setShowDropdown(false);
     navigate("/");
-    setSearchQuery("");
+    if (setSearchQuery !== undefined) setSearchQuery("");
   };
 
   const routeTo = (path) => {

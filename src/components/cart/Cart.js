@@ -7,7 +7,7 @@ import {
   calculateTotalCost,
   clearCart,
 } from "../../services/cartService";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 import "./cart.css";
@@ -105,7 +105,10 @@ const Cart = () => {
           })}
           <button
             className="button cart-remove-button"
-            onClick={() => clearCart()}
+            onClick={() => {
+              clearCart();
+              toast.info("Cart has been cleared")
+            }}
           >
             Clear cart
           </button>
