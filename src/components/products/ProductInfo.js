@@ -17,21 +17,21 @@ const ProductInfo = () => {
   })[0];
 
   const proceedToCheckout = () => {
-    updateCurrentOrder("items", {[product.id]:1});
+    updateCurrentOrder("items", { [product.id]: 1 });
     updateCurrentOrder("cost", product.price);
     navigate("/select-address");
   };
 
   return (
     <div className="product-info">
-      <div className="image">
+      <div className="image" data-testid="productImage">
         <img
           src={product.image}
           alt={product.name + "image"}
           height="400"
         ></img>
       </div>
-      <div className="info">
+      <div className="info" data-testid="productDetails">
         <h1>{product.name}</h1>
 
         <hr />
