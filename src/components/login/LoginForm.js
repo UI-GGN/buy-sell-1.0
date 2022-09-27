@@ -90,7 +90,11 @@ const LoginForm = ({ onLogin, authMode }) => {
           />
           <div className="last-layer">
             <div className="check-box">
-              <input type="checkbox" id="remember-me" />
+              <input
+                type="checkbox"
+                id="remember-me"
+                data-testid="rememberMeCheckbox"
+              />
               <label htmlFor="remember-me">Remember me</label>
             </div>
 

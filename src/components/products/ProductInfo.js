@@ -99,9 +99,9 @@ const ProductInfo = () => {
           >
             Add to Cart
           </button>
-          <button 
-          className="button product-page-button buy-now-button"
-          onClick={() => proceedToCheckout()}
+          <button
+            className="button product-page-button buy-now-button"
+            onClick={() => proceedToCheckout()}
           >
             Buy Now
           </button>

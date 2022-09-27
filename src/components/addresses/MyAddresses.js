@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AddAddressDialog from "../dialog/addAddressDialog/AddAddressDialog";
 import { deleteAddress } from "../../services/addressService";
 import { ToastContainer } from "react-toastify";

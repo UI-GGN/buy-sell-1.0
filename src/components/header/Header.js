@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./header.css";
 import Button from "../custom/button/Button";
 import { useNavigate } from "react-router-dom";
@@ -71,13 +71,13 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
           <p>Orders</p>
         </div>
         <div>
-          <p onClick={() => routeTo("/my/wishlist")}>Wishlist</p>
+          <p onClick={() => routeTo("/wishlist")}>Wishlist</p>
         </div>
         <div>
           <p>My Profile</p>
         </div>
         <div>
-          <p onClick={() => routeTo("/my/addresses")}>Saved Addresses</p>
+          <p onClick={() => routeTo("/addresses")}>Saved Addresses</p>
         </div>
       </div>
     );
@@ -124,7 +124,10 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
               <p className="icon-title">Profile</p>
               {showDropdown && (
                 <div style={{ height: 0 }}>
-                  <div className="indicator profile-icon-indicator"></div>
+                  <div
+                    className="indicator profile-icon-indicator"
+                    ref={ref}
+                  ></div>
                   <Dropdown
                     style={
                       isAuthenticated ? { right: "60px" } : { right: "0px" }
@@ -159,13 +162,13 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                     className="icon-button"
                     onClick={() => {
                       setShowDropdown(false);
-                      navigate("/my/wishlist");
+                      navigate("/wishlist");
                     }}
                   >
                     <FavoriteBorderIcon />
                   </button>
                   <p className="icon-title">Wishlist</p>
-                  {window.location.pathname === "/my/wishlist" && (
+                  {window.location.pathname === "/wishlist" && (
                     <div className="indicator"></div>
                   )}
                 </div>
@@ -174,7 +177,7 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                     className="icon-button"
                     onClick={() => {
                       setShowDropdown(false);
-                      navigate("/my/cart");
+                      navigate("/cart");
                     }}
                   >
                     <ShoppingCartOutlinedIcon />
@@ -183,7 +186,7 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
                     <div className="cart-length">{cartLength}</div>
                   )}
                   <p className="icon-title">Cart</p>
-                  {window.location.pathname === "/my/cart" && (
+                  {window.location.pathname === "/cart" && (
                     <div className="indicator"></div>
                   )}
                 </div>

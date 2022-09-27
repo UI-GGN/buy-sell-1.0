@@ -112,7 +112,7 @@ const RootRouter = () => {
       />
       <Route
         exact
-        path="/my/wishlist"
+        path="/wishlist"
         element={
           <ProtectedRoute redirectTo={"/"}>
             <div>
@@ -129,7 +129,7 @@ const RootRouter = () => {
       />
       <Route
         exact
-        path="/my/cart"
+        path="/cart"
         element={
           <ProtectedRoute redirectTo={"/"}>
             <div>
@@ -146,7 +146,7 @@ const RootRouter = () => {
       />
       <Route
         exact
-        path="/my/addresses"
+        path="/addresses"
         element={
           <ProtectedRoute redirectTo={"/"}>
             <div>

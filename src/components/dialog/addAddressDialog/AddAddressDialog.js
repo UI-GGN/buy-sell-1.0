@@ -86,11 +86,12 @@ const AddAddressDialog = ({ setOpenDialog, edit, currentAddress }) => {
   };
 
   return (
-    <Dialog setShowDialog={() => {
-      setOpenDialog();
-      dispatch(updateEditAddress(false));
+    <Dialog
+      setShowDialog={() => {
+        setOpenDialog();
+        dispatch(updateEditAddress(false));
       }}
-      >
+    >
       <form
         className="add-address-form"
         onSubmit={(e) => {

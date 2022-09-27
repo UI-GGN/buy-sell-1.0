@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import ProductInfo from "./ProductInfo.js";
-import { createMemoryHistory } from "history";
-import { BrowserRouter, useSearchParams } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import React from "react";
 
 describe("basic rendering", () => {
   test("should display product image", () => {

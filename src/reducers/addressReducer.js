@@ -1,7 +1,7 @@
 const initialState = {
   addresses: [],
   selectedAddress: 0,
-  editAddress: false
+  editAddress: false,
 };
 
 const addressReducer = (state = initialState, action) => {

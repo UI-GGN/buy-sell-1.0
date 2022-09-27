@@ -24,7 +24,7 @@ const SelectAddress = () => {
           {/* <ProductionQuantityLimitsIcon className="empty-icon" /> */}
           <p>
             You don&apos;t have any address saved. Please{" "}
-            <Link to={"/my/addresses"}>add</Link> to continue
+            <Link to={"/addresses"}>add</Link> to continue
           </p>
         </div>
       ) : (
