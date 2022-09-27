@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./header.css";
 import Button from "../custom/button/Button";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +11,15 @@ import SellersPortalLogo from "../../logo/CBP_Sellers_Portal.png";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+//import useOutsideClick from "../../customHooks/useOutsideClick";
 
 const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const cart = useSelector((state) => state.cartReducer.cart);
+  //const ref = useRef();
+
+  //useOutsideClick(ref, setShowDropdown(false));
+
   let cartLength = Object.keys(cart).length;
   const iconLocationArray = [
     "/login",
@@ -124,10 +129,7 @@ const Header = ({ isAuthenticated, onLogout, setSearchQuery }) => {
               <p className="icon-title">Profile</p>
               {showDropdown && (
                 <div style={{ height: 0 }}>
-                  <div
-                    className="indicator profile-icon-indicator"
-                    ref={ref}
-                  ></div>
+                  <div className="indicator profile-icon-indicator"></div>
                   <Dropdown
                     style={
                       isAuthenticated ? { right: "60px" } : { right: "0px" }
